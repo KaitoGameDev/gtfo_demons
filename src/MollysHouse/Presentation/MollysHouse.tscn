@@ -1,24 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cievm3wnq0l21"]
+[gd_scene load_steps=6 format=3 uid="uid://cievm3wnq0l21"]
 
 [ext_resource type="PackedScene" uid="uid://c1ii2x6dp3431" path="res://src/John/Presentation/John.tscn" id="1_nbk4g"]
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_rifru"]
 [ext_resource type="Texture2D" uid="uid://cqkdruk4idmg6" path="res://src/MollysHouse/Assets/Background.PNG" id="2_u0836"]
-[ext_resource type="Texture2D" uid="uid://bqc1txtwjeall" path="res://src/John/Assets/LocalDemonsStorage.PNG" id="5_f7hff"]
+[ext_resource type="Texture2D" uid="uid://cpsinjwtlp6wg" path="res://src/MollysHouse/Assets/Molly.png" id="4_0qlav"]
+[ext_resource type="Texture2D" uid="uid://bi1wkhwqat057" path="res://src/MollysHouse/Assets/MollysHouse.png" id="5_ekado"]
 
-[node name="MollysHouse" type="Node2D" node_paths=PackedStringArray("Enemy", "Player")]
+[node name="MollysHouse" type="Node2D"]
 script = ExtResource("1_rifru")
-Enemy = NodePath("Sprite2D")
-Player = NodePath("John")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_u0836")
 
-[node name="John" parent="." instance=ExtResource("1_nbk4g")]
-position = Vector2(968, 339)
-scale = Vector2(0.3, 0.3)
-Speed = 450.0
+[node name="Molly" type="Sprite2D" parent="."]
+position = Vector2(1708, 202)
+scale = Vector2(0.233398, 0.233398)
+texture = ExtResource("4_0qlav")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1929, -62)
-texture = ExtResource("5_f7hff")
+[node name="MollysHouse" type="Sprite2D" parent="."]
+position = Vector2(1438, 62)
+scale = Vector2(1.14844, 1.14844)
+texture = ExtResource("5_ekado")
+
+[node name="John" parent="." instance=ExtResource("1_nbk4g")]
+position = Vector2(312, 426)
+scale = Vector2(0.3, 0.3)

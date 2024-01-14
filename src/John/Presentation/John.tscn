@@ -1,23 +1,202 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1ii2x6dp3431"]
+[gd_scene load_steps=11 format=3 uid="uid://c1ii2x6dp3431"]
 
 [ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_eb6j2"]
 [ext_resource type="Texture2D" uid="uid://bqc1txtwjeall" path="res://src/John/Assets/LocalDemonsStorage.PNG" id="1_uw3x1"]
+[ext_resource type="Texture2D" uid="uid://cwekxiuaaus53" path="res://src/John/Assets/Rake.PNG" id="2_jbl47"]
 [ext_resource type="Texture2D" uid="uid://bvdmtwj46so0q" path="res://src/John/Assets/John.PNG" id="2_unvnr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abje1"]
 radius = 163.0
 height = 480.0
 
+[sub_resource type="Animation" id="Animation_w2sj8"]
+resource_name = "GrabDemon"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotSprites/Rake:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotSprites/Rake:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.67214, 1.22491]
+}
+
+[sub_resource type="Animation" id="Animation_tbmv7"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotSprites/John:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.87577), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotSprites/John:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PivotSprites/LocalDemonsStorage:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(231, -35), Vector2(232, -11), Vector2(231, -35)]
+}
+
+[sub_resource type="Animation" id="Animation_h4myh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotSprites/John:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotSprites/John:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PivotSprites/LocalDemonsStorage:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(231, -35)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PivotSprites/Rake:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.67214]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PivotSprites/Rake:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hwgjt"]
+resource_name = "Dash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PivotSprites/John:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 89.25), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PivotSprites/John:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.63347), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dctq"]
+_data = {
+"Dash": SubResource("Animation_hwgjt"),
+"GrabDemon": SubResource("Animation_w2sj8"),
+"Idle": SubResource("Animation_tbmv7"),
+"RESET": SubResource("Animation_h4myh")
+}
+
 [node name="John" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_eb6j2")
+metadata/_edit_horizontal_guides_ = [228.0]
 
-[node name="LocalDemonsStorage" type="Sprite2D" parent="."]
-position = Vector2(72, -16)
+[node name="PivotSprites" type="Node2D" parent="."]
+
+[node name="Rake" type="Sprite2D" parent="PivotSprites"]
+position = Vector2(-5, 6)
+rotation = -1.67214
+scale = Vector2(1.12398, 1.12398)
+texture = ExtResource("2_jbl47")
+offset = Vector2(-258.727, -81.1483)
+
+[node name="LocalDemonsStorage" type="Sprite2D" parent="PivotSprites"]
+position = Vector2(231, -35)
 rotation = -0.236695
 texture = ExtResource("1_uw3x1")
 
-[node name="John" type="Sprite2D" parent="."]
+[node name="John" type="Sprite2D" parent="PivotSprites"]
 texture = ExtResource("2_unvnr")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -25,5 +204,14 @@ shape = SubResource("CapsuleShape2D_abje1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+limit_left = -2500
 limit_top = -1200
+limit_right = 2500
 limit_bottom = 1300
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6dctq")
+}
