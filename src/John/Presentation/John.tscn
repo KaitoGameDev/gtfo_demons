@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1ii2x6dp3431"]
+
+[ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_eb6j2"]
+[ext_resource type="Texture2D" uid="uid://bqc1txtwjeall" path="res://src/John/Assets/LocalDemonsStorage.PNG" id="1_uw3x1"]
+[ext_resource type="Texture2D" uid="uid://bvdmtwj46so0q" path="res://src/John/Assets/John.PNG" id="2_unvnr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abje1"]
+radius = 163.0
+height = 480.0
+
+[node name="John" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_eb6j2")
+
+[node name="LocalDemonsStorage" type="Sprite2D" parent="."]
+position = Vector2(72, -16)
+rotation = -0.236695
+texture = ExtResource("1_uw3x1")
+
+[node name="John" type="Sprite2D" parent="."]
+texture = ExtResource("2_unvnr")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_abje1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+limit_top = -1200
+limit_bottom = 1300
