@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -11,15 +12,32 @@ public partial class DashWidget : Control
 	private Panel _dashContainer;
 	private Timer _timer;
 	private readonly Subject<Unit> _emitter = new();
+	private Label _buttonKey;
 
 	private bool _isDashAllowed = true;
 	private IGameplayManager _gameplayManager;
 	public override void _Ready()
 	{
 		_gameplayManager = GameplayFactory.GetGameplayManagerOrDefault(GetTree());
+		
+		_buttonKey = GetNode<Label>("Panel/Key/ButtonKey");
 		_timer = GetNode<Timer>("Timer");
 		_timer.Connect("timeout", Callable.From(OnTimeoutRestoreDash));
 		_dashContainer = GetNode<Panel>("Panel");
+	}
+
+	private void CheckUserController()
+	{
+		var inputs = Input.GetConnectedJoypads();
+		if (inputs.Count > 0)
+		{
+			var deviceName = Input.GetJoyName(inputs.First()).ToLower();
+			_buttonKey.Text = deviceName.Contains("sega") ? "B" : deviceName.Contains("xbox") ? "A" : "X";
+		}
+		else
+		{
+			_buttonKey.Text = "Z";
+		}
 	}
 
 	private void OnTimeoutRestoreDash()
@@ -30,15 +48,17 @@ public partial class DashWidget : Control
 
 	public override void _Process(double delta)
 	{
+		CheckUserController();
+
 		if (!_gameplayManager.IsGameplayActive()) return;
 		
 		if (Input.IsActionJustPressed("Dash") && _isDashAllowed)
 		{
-			OnDashPressed();
+			_OnDashPressed();
 		}
 	}
 
-	private void OnDashPressed()
+	private void _OnDashPressed()
 	{
 		_isDashAllowed = false;
 		_timer.Start();
@@ -46,5 +66,5 @@ public partial class DashWidget : Control
 		_dashContainer.Modulate = Colors.Gray;
 	}
 
-	public IObservable<Unit> OnDashStatusChanged() => _emitter.AsObservable();
+	public IObservable<Unit> OnDashPressed() => _emitter.AsObservable();
 }

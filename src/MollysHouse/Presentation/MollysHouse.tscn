@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=11 format=3 uid="uid://bsce3uyl7rge6"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="1_lea2h"]
 [ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="1_oempw"]
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_y10a5"]
+[ext_resource type="Texture2D" uid="uid://c5pqbc3a0kqev" path="res://src/MollysHouse/Assets/Background.png" id="3_3tbf8"]
+[ext_resource type="Texture2D" uid="uid://crsxqtf4pcifw" path="res://src/MollysHouse/Assets/Tree.png" id="4_aoeby"]
+[ext_resource type="Texture2D" uid="uid://c5wey0uy171wm" path="res://src/MollysHouse/Assets/Molly's_House.png" id="6_ntjx5"]
+[ext_resource type="PackedScene" uid="uid://dt5hk08rs16h6" path="res://src/Gameplay/Presentation/DashWidget.tscn" id="7_6h43l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1sev"]
+albedo_texture = ExtResource("3_3tbf8")
+
+[sub_resource type="Environment" id="Environment_ndfht"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ptq8o"]
+height = 10.0
+radius = 15.315
 
 [node name="MollysHouse" type="Node3D"]
 script = ExtResource("1_y10a5")
@@ -10,11 +23,281 @@ script = ExtResource("1_y10a5")
 [node name="GameplayManager" type="Node" parent="."]
 script = ExtResource("1_lea2h")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-size = Vector3(100, 0.2, 100)
+[node name="Terrain" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19507, 0, 0)
+material_override = SubResource("StandardMaterial3D_f1sev")
+size = Vector3(216.426, 0.2, 100)
 
-[node name="John" parent="." instance=ExtResource("1_oempw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.80167, 2.08165e-12)
+[node name="John" parent="." node_paths=PackedStringArray("_dashWidget") instance=ExtResource("1_oempw")]
+transform = Transform3D(1, -4.96191e-16, 3.16108e-16, 3.16108e-16, 0.906308, 0.422618, -4.96191e-16, -0.422618, 0.906308, 26.5745, 2.80167, 2.08165e-12)
+motion_mode = 1
+Speed = 15.0
+_dashWidget = NodePath("../CanvasLayer/DashWidget")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89581, 27.1477)
+[node name="Camera3D" type="Camera3D" parent="John"]
+transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 0, 18.0691, 25.677)
+
+[node name="BorderTrees" type="Node3D" parent="."]
+transform = Transform3D(1, -5.00957e-16, 4.0545e-16, 2.4663e-16, 0.878692, 0.477389, -5.95416e-16, -0.477389, 0.878692, 7.62939e-06, 22.0484, -0.270895)
+
+[node name="Sprite3D" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.863, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D19" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89523, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D20" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9169, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D21" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3779, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D22" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8819, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D23" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.7968, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D24" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.0076, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D25" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.7163, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D26" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.7163, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D2" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.3749, 8.96627, -47.0373)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D4" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.4494, 7.06358, -51.2218)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D5" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.552, 9.64472, -42.9964)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D6" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.9833, 8.80706, -49.0725)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D7" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1114, 8.80706, -43.2177)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D8" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.455, 8.80706, -48.4514)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D9" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0642, 8.80706, -43.6184)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D10" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9604, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D11" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06967, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D12" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6355, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D13" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.211, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D14" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7913, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D15" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.4932, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D16" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5523, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D17" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.8974, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D18" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.351, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D3" type="Sprite3D" parent="BorderTrees"]
+transform = Transform3D(0.866648, 0, 0, 0, 0.866648, 0, 0, 0, 1, -91.0869, 6.711, -50.03)
+texture = ExtResource("4_aoeby")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="BorderTrees"]
+transform = Transform3D(1, 1.86786e-21, 3.93306e-21, 1.44741e-23, 0.870167, -0.492758, -3.43808e-24, 0.492758, 0.870167, 0.783774, 0.453636, -41.3588)
+layers = 0
+use_collision = true
+collision_layer = 2
+size = Vector3(218.783, 5.49951, 1)
+
+[node name="BorderTrees2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.526752, 90.874)
+
+[node name="Sprite3D" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.863, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D19" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89523, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D20" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9169, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D21" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3779, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D22" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8819, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D23" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.7968, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D24" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.0076, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D25" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.7163, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D26" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.7163, 8.96627, -43.8464)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D2" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.3749, 8.96627, -47.0373)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D4" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.4494, 7.06358, -51.2218)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D5" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.552, 9.64472, -42.9964)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D6" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.9833, 8.80706, -49.0725)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D7" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1114, 8.80706, -43.2177)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D8" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.455, 8.80706, -48.4514)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D9" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.0642, 8.80706, -43.6184)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D10" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9604, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D11" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06967, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D12" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6355, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D13" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.211, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D14" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7913, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D15" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.4932, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D16" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.5523, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D17" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.8974, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D18" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.351, 8.80706, -48.8663)
+texture = ExtResource("4_aoeby")
+
+[node name="Sprite3D3" type="Sprite3D" parent="BorderTrees2"]
+transform = Transform3D(0.866648, 0, 0, 0, 0.866648, 0, 0, 0, 1, -91.0869, 6.711, -50.03)
+texture = ExtResource("4_aoeby")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="BorderTrees2"]
+transform = Transform3D(1, 1.40133e-23, 2.06437e-22, 1.44741e-23, 0.999818, -0.0190579, -3.43808e-24, 0.0190579, 0.999818, 0.783774, 2.99477, -50.5719)
+layers = 0
+use_collision = true
+collision_layer = 2
+size = Vector3(218.783, 5.04895, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0474551, 0.998873, 0, -0.998873, 0.0474551, 0, 25.02, 0)
+light_energy = 3.0
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ndfht")
+
+[node name="House" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.4708, 0, -5.58032)
+collision_layer = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="House"]
+transform = Transform3D(4.37748, 0.115316, -0.355629, -0.123382, 4.68366, 2.58991e-10, 1.66565, 0.0438783, 0.934627, 2.08165e-12, 14.566, 2.08165e-12)
+texture = ExtResource("6_ntjx5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="House"]
+transform = Transform3D(0.935955, 0, -0.352119, 0, 1, 0, 0.352119, 0, 0.935955, 0.251755, 5.51763, -0.490376)
+shape = SubResource("CylinderShape3D_ptq8o")
+
+[node name="DemonParadox" type="StaticBody3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="DemonParadox"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DashWidget" parent="CanvasLayer" instance=ExtResource("7_6h43l")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = -50.0
+grow_horizontal = 1
+grow_vertical = 0

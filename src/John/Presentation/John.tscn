@@ -144,6 +144,8 @@ _data = {
 }
 
 [node name="John" type="CharacterBody3D"]
+collision_mask = 2
+platform_wall_layers = 2
 script = ExtResource("1_ul4st")
 
 [node name="Sprites" type="Node3D" parent="."]
@@ -170,3 +172,7 @@ shape = SubResource("CapsuleShape3D_qmdql")
 libraries = {
 "": SubResource("AnimationLibrary_yvcti")
 }
+
+[node name="DashTime" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
