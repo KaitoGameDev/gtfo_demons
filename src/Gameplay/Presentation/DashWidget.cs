@@ -32,7 +32,7 @@ public partial class DashWidget : Control
 		if (inputs.Count > 0)
 		{
 			var deviceName = Input.GetJoyName(inputs.First()).ToLower();
-			_buttonKey.Text = deviceName.Contains("sega") ? "B" : deviceName.Contains("xbox") ? "A" : "X";
+			_buttonKey.Text = deviceName.Contains("nintendo") ? "B" : deviceName.Contains("xinput") ? "A" : "X";
 		}
 		else
 		{
