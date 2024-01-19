@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt5hk08rs16h6"]
+
+[ext_resource type="Texture2D" uid="uid://cecc8v462lfjr" path="res://src/Shared/Assets/ui_elements.svg" id="1_blfqd"]
+[ext_resource type="Script" path="res://src/Gameplay/Presentation/DashWidget.cs" id="1_ulg0o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rna1c"]
+texture = ExtResource("1_blfqd")
+region_rect = Rect2(0, 412, 211, 222)
+
+[node name="DashWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ulg0o")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rna1c")
+
+[node name="DashIcon" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.123
+anchor_top = 0.253
+anchor_right = 0.877
+anchor_bottom = 0.747
+offset_left = 0.0499995
+offset_top = 0.0499969
+offset_right = -0.0500051
+offset_bottom = -0.0500058
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_blfqd")
+region_rect = Rect2(24, 690, 179, 115)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

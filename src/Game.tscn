@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmsudik5daoda"]
+
+[ext_resource type="PackedScene" uid="uid://b5fpah366204t" path="res://src/Main/Presentation/Splash.tscn" id="1_1h5ld"]
+
+[node name="Game" type="Node"]
+
+[node name="Splash" parent="." instance=ExtResource("1_1h5ld")]

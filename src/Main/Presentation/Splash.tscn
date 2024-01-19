@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5fpah366204t"]
+
+[ext_resource type="Script" path="res://src/Main/Presentation/Splash.cs" id="1_bl5so"]
+[ext_resource type="Texture2D" uid="uid://da3b1topgpf4a" path="res://src/Main/Assets/GWJ.png" id="1_l7o1s"]
+[ext_resource type="Texture2D" uid="uid://d2fq2ui72rp5r" path="res://src/Main/Assets/logo.png" id="1_vrvlv"]
+[ext_resource type="Theme" uid="uid://dcy66gejpwwcr" path="res://src/Shared/Theme/lilita.tres" id="4_hh8ku"]
+[ext_resource type="Texture2D" uid="uid://cxahtejvgbf6f" path="res://src/Main/Assets/65-Overload.png" id="4_iqooe"]
+
+[node name="Splash" type="Node"]
+script = ExtResource("1_bl5so")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.921569, 0.921569, 0.921569, 1)
+
+[node name="Gwj" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -915.0
+offset_top = -417.0
+offset_right = 45.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_l7o1s")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Gwj"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -297.0
+offset_top = 43.0
+offset_right = -181.0
+offset_bottom = 133.0
+grow_horizontal = 0
+rotation = 0.348196
+theme = ExtResource("4_hh8ku")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 75
+text = "#65"
+
+[node name="Logo" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -302.0
+offset_right = 801.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vrvlv")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -474.0
+offset_right = 109.0
+offset_bottom = -384.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_hh8ku")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 65
+text = "THEME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="65-overload" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -447.0
+offset_top = -365.0
+offset_right = 447.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_iqooe")
+expand_mode = 1

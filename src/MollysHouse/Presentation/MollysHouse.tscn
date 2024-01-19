@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cievm3wnq0l21"]
+[gd_scene load_steps=4 format=3 uid="uid://bsce3uyl7rge6"]
 
-[ext_resource type="PackedScene" uid="uid://c1ii2x6dp3431" path="res://src/John/Presentation/John.tscn" id="1_nbk4g"]
-[ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_rifru"]
-[ext_resource type="Texture2D" uid="uid://cqkdruk4idmg6" path="res://src/MollysHouse/Assets/Background.PNG" id="2_u0836"]
-[ext_resource type="Texture2D" uid="uid://cpsinjwtlp6wg" path="res://src/MollysHouse/Assets/Molly.png" id="4_0qlav"]
-[ext_resource type="Texture2D" uid="uid://bi1wkhwqat057" path="res://src/MollysHouse/Assets/MollysHouse.png" id="5_ekado"]
+[ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="1_lea2h"]
+[ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="1_oempw"]
+[ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_y10a5"]
 
-[node name="MollysHouse" type="Node2D"]
-script = ExtResource("1_rifru")
+[node name="MollysHouse" type="Node3D"]
+script = ExtResource("1_y10a5")
 
-[node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("2_u0836")
+[node name="GameplayManager" type="Node" parent="."]
+script = ExtResource("1_lea2h")
 
-[node name="Molly" type="Sprite2D" parent="."]
-position = Vector2(1708, 202)
-scale = Vector2(0.233398, 0.233398)
-texture = ExtResource("4_0qlav")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(100, 0.2, 100)
 
-[node name="MollysHouse" type="Sprite2D" parent="."]
-position = Vector2(1438, 62)
-scale = Vector2(1.14844, 1.14844)
-texture = ExtResource("5_ekado")
+[node name="John" parent="." instance=ExtResource("1_oempw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.80167, 2.08165e-12)
 
-[node name="John" parent="." instance=ExtResource("1_nbk4g")]
-position = Vector2(312, 426)
-scale = Vector2(0.3, 0.3)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.89581, 27.1477)

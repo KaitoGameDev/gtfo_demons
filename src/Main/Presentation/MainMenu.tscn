@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://chmq1gkeex0v4"]
+
+[ext_resource type="Script" path="res://src/Main/Presentation/MainMenu.cs" id="1_hof3f"]
+[ext_resource type="Texture2D" uid="uid://crq0exyqy4cnp" path="res://src/Main/Assets/Background.png" id="1_p6geb"]
+[ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="2_yy677"]
+[ext_resource type="Script" path="res://src/Main/Presentation/BaseGameBtn.cs" id="3_muopj"]
+[ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="4_gqmbr"]
+[ext_resource type="Theme" uid="uid://csqaaoqt8woyh" path="res://src/Shared/Theme/rubik_regular_btn.tres" id="4_pp8nd"]
+[ext_resource type="Theme" uid="uid://dcy66gejpwwcr" path="res://src/Shared/Theme/lilita.tres" id="5_5wf2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3qq0"]
+albedo_texture = ExtResource("1_p6geb")
+
+[sub_resource type="Environment" id="Environment_63plt"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_hof3f")
+
+[node name="GameplayManager" type="Node" parent="."]
+script = ExtResource("2_yy677")
+
+[node name="Background3D" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Background3D"]
+material_override = SubResource("StandardMaterial3D_o3qq0")
+size = Vector3(245.015, 0.333, 160.433)
+
+[node name="John" parent="Background3D" instance=ExtResource("4_gqmbr")]
+transform = Transform3D(1, -5.95416e-16, 2.4663e-16, 2.4663e-16, 0.707107, 0.707107, -5.95416e-16, -0.707107, 0.707107, 6.64931, 2.13199, 16.254)
+
+[node name="Camera3D" type="Camera3D" parent="Background3D"]
+transform = Transform3D(1, 0, 0, 0, 0.801703, 0.597723, 0, -0.597723, 0.801703, -16, 14.3335, 28.7506)
+fov = 104.062
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background3D"]
+environment = SubResource("Environment_63plt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background3D"]
+transform = Transform3D(1, 0, 0, 0, 0.0154106, 0.999881, 0, -0.999881, 0.0154106, 0, 18.9285, 0)
+light_energy = 2.676
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.490196)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = -513.0
+offset_right = 608.0
+offset_bottom = -67.0
+grow_vertical = 0
+theme_override_constants/separation = 55
+
+[node name="StartGameBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 120)
+layout_mode = 2
+theme = ExtResource("4_pp8nd")
+theme_override_font_sizes/font_size = 45
+text = "START GAME"
+script = ExtResource("3_muopj")
+
+[node name="CreditsBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 120)
+layout_mode = 2
+theme = ExtResource("4_pp8nd")
+theme_override_font_sizes/font_size = 55
+text = "CREDITS"
+script = ExtResource("3_muopj")
+
+[node name="Title" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 190.0
+offset_right = 590.0
+offset_bottom = 425.0
+
+[node name="DEMONS" type="Label" parent="CanvasLayer/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -51.5
+offset_right = 345.0
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_5wf2k")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 140
+text = "DEMONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GTFO!" type="Label" parent="CanvasLayer/Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.5
+offset_top = -95.0
+offset_right = 33.5
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.208632
+theme = ExtResource("5_5wf2k")
+theme_override_colors/font_color = Color(1, 0.121569, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 120
+text = "GTFO!"
+horizontal_alignment = 1
+vertical_alignment = 1
