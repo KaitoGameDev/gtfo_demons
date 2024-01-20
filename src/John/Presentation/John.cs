@@ -7,8 +7,10 @@ using gtfo_demons.Gameplay.Presentation;
 public partial class John : CharacterBody3D
 {
     private IGameplayManager _gameplayManager;
-    private AnimationPlayer _animator;
     private Timer _dashTimer;
+    private Timer _grabTimer;
+    private AnimationTree _animationTree;
+    private Node3D _body;
 
     [Export] private float Speed = 5.0f;
     [Export] private float DashFactor = 5.0f;
@@ -17,16 +19,24 @@ public partial class John : CharacterBody3D
     private Vector2 _direction = Vector2.Zero;
     private Vector3 _velocity = Vector3.Zero;
 
-    private bool _dashing = false;
+    private bool _dashing;
+    private bool _grabbing;
 
     public override void _Ready()
     {
+        _body = GetNode<Node3D>("Sprites");
         _gameplayManager = GameplayFactory.GetGameplayManagerOrDefault(GetTree());
-        _animator = GetNode<AnimationPlayer>("Animator");
-        _animator.Play("Idle");
+        _animationTree = GetNode<AnimationTree>("AnimationTree");
         _dashTimer = GetNode<Timer>("DashTime");
+        _grabTimer = GetNode<Timer>("GrabTimer");
         _dashTimer.Connect("timeout", Callable.From(OnDashTimeout));
+        _grabTimer.Connect("timeout", Callable.From(OnGrabTimeout));
         _dashWidget?.OnDashPressed().Subscribe(OnDashPressed);
+    }
+
+    private void OnGrabTimeout()
+    {
+        _grabbing = false;
     }
 
     private void OnDashTimeout()
@@ -48,7 +58,38 @@ public partial class John : CharacterBody3D
             return;
         }
 
+        CaptureMovingAction();
+        CaptureGrabAction();
+        UpdateAnimation();
+    }
+
+    private void UpdateAnimation()
+    {
+        _animationTree.Set("parameters/conditions/idle", !_grabbing);
+        _animationTree.Set("parameters/conditions/grabbing", _grabbing);
+    }
+
+    private void CaptureMovingAction()
+    {
         _direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+        if (_direction.X > 0 && _body.RotationDegrees.Y >= 0)
+        {
+            _body.RotationDegrees = new Vector3(0f, -180f, 0f);
+        }
+
+        if (_direction.X < 0 && _body.RotationDegrees.Y < 0)
+        {
+            _body.RotationDegrees = new Vector3(0f, 0f, 0f);
+        }
+    }
+
+    private void CaptureGrabAction()
+    {
+        if (Input.IsActionJustPressed("Grab") && !_grabbing)
+        {
+            _grabbing = true;
+            _grabTimer.Start();
+        }
     }
 
     public override void _PhysicsProcess(double delta)

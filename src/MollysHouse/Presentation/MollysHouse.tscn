@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=18 format=3 uid="uid://bsce3uyl7rge6"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="1_lea2h"]
 [ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="1_oempw"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://crsxqtf4pcifw" path="res://src/MollysHouse/Assets/Tree.png" id="4_aoeby"]
 [ext_resource type="Texture2D" uid="uid://c5wey0uy171wm" path="res://src/MollysHouse/Assets/Molly's_House.png" id="6_ntjx5"]
 [ext_resource type="PackedScene" uid="uid://dt5hk08rs16h6" path="res://src/Gameplay/Presentation/DashWidget.tscn" id="7_6h43l"]
+[ext_resource type="Script" path="res://src/MollysHouse/Presentation/ParadoxBox.cs" id="7_ld576"]
+[ext_resource type="Texture2D" uid="uid://d317qbyuutjna" path="res://src/MollysHouse/Assets/Paradox_Box.png" id="7_r01qv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1sev"]
 albedo_texture = ExtResource("3_3tbf8")
@@ -16,6 +18,73 @@ albedo_texture = ExtResource("3_3tbf8")
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ptq8o"]
 height = 10.0
 radius = 15.315
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2fq4q"]
+size = Vector3(12.2249, 5.91016, 9.25684)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6347p"]
+radius = 9.2831
+
+[sub_resource type="Animation" id="Animation_jkncv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpSide:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, 3.48787e-16, 3.48787e-16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpSide:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.28631, -2.08896)]
+}
+
+[sub_resource type="Animation" id="Animation_fe6t3"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpSide:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.28631, -2.08896), Vector3(4, 5, -2.089)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpSide:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.785398, 3.48787e-16, 3.48787e-16), Vector3(-0.785398, -0.436332, 3.48787e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mfnnh"]
+_data = {
+"RESET": SubResource("Animation_jkncv"),
+"open": SubResource("Animation_fe6t3")
+}
 
 [node name="MollysHouse" type="Node3D"]
 script = ExtResource("1_y10a5")
@@ -286,8 +355,37 @@ transform = Transform3D(0.935955, 0, -0.352119, 0, 1, 0, 0.352119, 0, 0.935955, 
 shape = SubResource("CylinderShape3D_ptq8o")
 
 [node name="DemonParadox" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.4909, 2.83452, 24.0056)
+collision_layer = 2
+script = ExtResource("7_ld576")
 
-[node name="Sprite3D" type="Sprite3D" parent="DemonParadox"]
+[node name="UpSide" type="Sprite3D" parent="DemonParadox"]
+transform = Transform3D(2.4698, -1.47056e-15, 2.4663e-16, 6.09126e-16, 1.74641, 0.707107, -1.47056e-15, -1.74641, 0.707107, 0, 2.28631, -2.08896)
+sorting_offset = 10.0
+texture = ExtResource("7_r01qv")
+region_enabled = true
+region_rect = Rect2(13, 6, 491, 166)
+
+[node name="Box" type="Sprite3D" parent="DemonParadox"]
+transform = Transform3D(2.4698, -1.47056e-15, 2.4663e-16, 6.09126e-16, 1.74641, 0.707107, -1.47056e-15, -1.74641, 0.707107, 0, 0, 0)
+sorting_offset = 9.0
+texture = ExtResource("7_r01qv")
+region_enabled = true
+region_rect = Rect2(68, 180, 370, 268)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonParadox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.098805, 0)
+shape = SubResource("BoxShape3D_2fq4q")
+
+[node name="Area3D" type="Area3D" parent="DemonParadox"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DemonParadox/Area3D"]
+shape = SubResource("CylinderShape3D_6347p")
+
+[node name="Animator" type="AnimationPlayer" parent="DemonParadox"]
+libraries = {
+"": SubResource("AnimationLibrary_mfnnh")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -301,3 +399,17 @@ offset_right = 200.0
 offset_bottom = -50.0
 grow_horizontal = 1
 grow_vertical = 0
+
+[node name="Border_1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.5315, 2.15729, 0)
+layers = 0
+use_collision = true
+collision_layer = 2
+size = Vector3(1, 4.60571, 82.51)
+
+[node name="Border_2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.174, 2.15729, 0)
+layers = 0
+use_collision = true
+collision_layer = 2
+size = Vector3(1, 4.60571, 82.51)

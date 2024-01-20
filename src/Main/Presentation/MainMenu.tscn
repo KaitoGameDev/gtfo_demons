@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://chmq1gkeex0v4"]
+[gd_scene load_steps=9 format=3 uid="uid://chmq1gkeex0v4"]
 
 [ext_resource type="Script" path="res://src/Main/Presentation/MainMenu.cs" id="1_hof3f"]
 [ext_resource type="Texture2D" uid="uid://crq0exyqy4cnp" path="res://src/Main/Assets/Background.png" id="1_p6geb"]
 [ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="2_yy677"]
-[ext_resource type="Script" path="res://src/Main/Presentation/BaseGameBtn.cs" id="3_muopj"]
 [ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="4_gqmbr"]
 [ext_resource type="Theme" uid="uid://csqaaoqt8woyh" path="res://src/Shared/Theme/rubik_regular_btn.tres" id="4_pp8nd"]
 [ext_resource type="Theme" uid="uid://dcy66gejpwwcr" path="res://src/Shared/Theme/lilita.tres" id="5_5wf2k"]
@@ -66,7 +65,6 @@ layout_mode = 2
 theme = ExtResource("4_pp8nd")
 theme_override_font_sizes/font_size = 45
 text = "START GAME"
-script = ExtResource("3_muopj")
 
 [node name="CreditsBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 120)
@@ -74,7 +72,13 @@ layout_mode = 2
 theme = ExtResource("4_pp8nd")
 theme_override_font_sizes/font_size = 55
 text = "CREDITS"
-script = ExtResource("3_muopj")
+
+[node name="QuitBtn" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 120)
+layout_mode = 2
+theme = ExtResource("4_pp8nd")
+theme_override_font_sizes/font_size = 55
+text = "Quit"
 
 [node name="Title" type="Control" parent="CanvasLayer"]
 layout_mode = 3
