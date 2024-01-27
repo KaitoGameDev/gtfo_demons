@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs0byxx1tjymf"
-path.s3tc="res://.godot/imported/Rake.png-b7ac53be63959923583bf3ce5a2cf5c0.s3tc.ctex"
+uid="uid://bcu0p7riyy8gc"
+path.s3tc="res://.godot/imported/john_grab-9.png-6f131f99dfbd7b8f0e86ec7fb1fba2e1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/John/Assets/Rake.png"
-dest_files=["res://.godot/imported/Rake.png-b7ac53be63959923583bf3ce5a2cf5c0.s3tc.ctex"]
+source_file="res://src/John/Assets/Grab/john_grab-9.png"
+dest_files=["res://.godot/imported/john_grab-9.png-6f131f99dfbd7b8f0e86ec7fb1fba2e1.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s7gqupgrt0xm"
-path.s3tc="res://.godot/imported/Local_Demons_Storage.png-7125ab38167b89396cd4aed5c55cca8e.s3tc.ctex"
+uid="uid://dxe6245xhrs7n"
+path.s3tc="res://.godot/imported/john_grab-1.png-0d67e956ab1cd1406a7ad01cac2760a0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/John/Assets/Local_Demons_Storage.png"
-dest_files=["res://.godot/imported/Local_Demons_Storage.png-7125ab38167b89396cd4aed5c55cca8e.s3tc.ctex"]
+source_file="res://src/John/Assets/Grab/john_grab-1.png"
+dest_files=["res://.godot/imported/john_grab-1.png-0d67e956ab1cd1406a7ad01cac2760a0.s3tc.ctex"]
 
 [params]
 

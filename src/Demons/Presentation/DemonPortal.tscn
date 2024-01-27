@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://kaxarfstoj52"]
+
+[ext_resource type="Texture2D" uid="uid://kxid06o80grh" path="res://src/Demons/Assets/DemonPortal.png" id="1_lmikw"]
+[ext_resource type="Script" path="res://src/Demons/Presentation/DemonPortal.cs" id="1_une2c"]
+
+[sub_resource type="Animation" id="Animation_jrexm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_of6vy"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.634183, 0.918264, 1), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.67495e-16, 0.480221, 1.67495e-16), Vector3(2.20109e-16, -0.631069, -2.20109e-16), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0j2jl"]
+_data = {
+"RESET": SubResource("Animation_jrexm"),
+"idle": SubResource("Animation_of6vy")
+}
+
+[node name="DemonPortal" type="Node3D"]
+script = ExtResource("1_une2c")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
+texture = ExtResource("1_lmikw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite3D"]
+libraries = {
+"": SubResource("AnimationLibrary_0j2jl")
+}
+autoplay = "idle"

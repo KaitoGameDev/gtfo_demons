@@ -8,7 +8,6 @@ public partial class MollysHouse : Node3D
 	public override void _Ready()
 	{
 		_gameplayManager = GameplayFactory.GetGameplayManagerOrDefault(GetTree());
-		GD.Print($"House ${_gameplayManager}");
 		_gameplayManager.ResumeGameplay();
 	}
 }

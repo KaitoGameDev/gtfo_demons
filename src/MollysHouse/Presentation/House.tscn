@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs28wwy62t6s6"]
+
+[ext_resource type="Script" path="res://src/MollysHouse/Presentation/LevelBuildings.cs" id="1_f1o04"]
+[ext_resource type="Texture2D" uid="uid://c5wey0uy171wm" path="res://src/MollysHouse/Assets/Molly's_House.png" id="1_ka3xg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ptq8o"]
+height = 10.0
+radius = 15.315
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_30163"]
+height = 9.40579
+radius = 5.79939
+
+[node name="House" type="StaticBody3D" node_paths=PackedStringArray("_hitBox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+collision_layer = 8
+script = ExtResource("1_f1o04")
+_hitBox = NodePath("Hitbox")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(4.35665, 0.946257, -0.307532, -0.106215, 4.05619, 0.5, 1.72054, -2.14566, 0.809583, 2.08165e-12, 14.566, 2.08165e-12)
+texture = ExtResource("1_ka3xg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.935955, 0, -0.352119, 0, 1, 0, 0.352119, 0, 0.935955, 0.251755, 5.51763, -0.490376)
+shape = SubResource("CylinderShape3D_ptq8o")
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.99468, 2.22933, 0)
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.331804, 0)
+shape = SubResource("CylinderShape3D_30163")

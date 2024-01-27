@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://d23bdp07c2gt5"]
+
+[ext_resource type="Script" path="res://src/ParadoxBox/Presentation/ParadoxBox.cs" id="1_rnarc"]
+[ext_resource type="Texture2D" uid="uid://d317qbyuutjna" path="res://src/ParadoxBox/Assets/Paradox_Box.png" id="2_v7pqj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6347p"]
+radius = 7.40118
+
+[sub_resource type="Animation" id="Animation_jkncv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpSide:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, 3.48787e-16, 3.48787e-16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpSide:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.28631, -2.08896)]
+}
+
+[sub_resource type="Animation" id="Animation_fe6t3"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpSide:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.28631, -2.08896), Vector3(4, 5, -2.089)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpSide:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.785398, 3.48787e-16, 3.48787e-16), Vector3(-0.785398, -0.436332, 3.48787e-16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mfnnh"]
+_data = {
+"RESET": SubResource("Animation_jkncv"),
+"open": SubResource("Animation_fe6t3")
+}
+
+[node name="ParadoxBox" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+script = ExtResource("1_rnarc")
+
+[node name="UpSide" type="Sprite3D" parent="."]
+transform = Transform3D(2.4698, -1.47056e-15, 2.4663e-16, 6.09126e-16, 1.74641, 0.707107, -1.47056e-15, -1.74641, 0.707107, 0, 2.28631, -2.08896)
+sorting_offset = 10.0
+texture = ExtResource("2_v7pqj")
+region_enabled = true
+region_rect = Rect2(13, 6, 491, 166)
+
+[node name="Box" type="Sprite3D" parent="."]
+transform = Transform3D(2.4698, -1.47056e-15, 2.4663e-16, 6.09126e-16, 1.74641, 0.707107, -1.47056e-15, -1.74641, 0.707107, 0, 0, 0)
+sorting_offset = 9.0
+texture = ExtResource("2_v7pqj")
+region_enabled = true
+region_rect = Rect2(68, 180, 370, 268)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_6347p")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mfnnh")
+}

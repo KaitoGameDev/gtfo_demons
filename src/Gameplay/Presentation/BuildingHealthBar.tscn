@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7peuvxxa3rj"]
+
+[ext_resource type="Script" path="res://src/Gameplay/Presentation/BuildingHealthBar.cs" id="1_6hlcy"]
+[ext_resource type="FontFile" uid="uid://bq2b1cmpv3sgb" path="res://src/Shared/Assets/Fonts/Rubik-Medium.ttf" id="2_7tv7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bty1"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46jso"]
+bg_color = Color(0.905882, 0.0588235, 0, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5do1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d85uw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf4ra"]
+bg_color = Color(0, 0.717647, 0.392157, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[node name="BuildingHealthBar" type="Control"]
+layout_mode = 3
+anchor_left = 0.1875
+anchor_right = 0.8125
+anchor_bottom = 0.0925926
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 50)
+script = ExtResource("1_6hlcy")
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bty1")
+
+[node name="DelayedBar" type="ProgressBar" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 50)
+theme_override_styles/background = SubResource("StyleBoxFlat_46jso")
+theme_override_styles/fill = SubResource("StyleBoxFlat_d5do1")
+step = 1.0
+show_percentage = false
+
+[node name="DelayedTimer" type="Timer" parent="Container/DelayedBar"]
+wait_time = 0.5
+
+[node name="CurrentHealthBar" type="ProgressBar" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 50)
+theme_override_styles/background = SubResource("StyleBoxFlat_d85uw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pf4ra")
+show_percentage = false
+
+[node name="BuildingName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -407.0
+offset_top = -182.0
+offset_right = 407.0
+offset_bottom = -105.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_7tv7s")
+theme_override_font_sizes/font_size = 55
+text = "HOUSE NAME"
+horizontal_alignment = 1
+vertical_alignment = 1

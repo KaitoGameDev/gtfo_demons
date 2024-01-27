@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://6bryfeq255wg"]
+
+[ext_resource type="Script" path="res://src/Demons/Presentation/Demon.cs" id="1_0e6a0"]
+[ext_resource type="Texture2D" uid="uid://cedkgume5kef1" path="res://src/Demons/Assets/Worm_Demon.png" id="1_3rjvj"]
+
+[sub_resource type="Animation" id="Animation_mgdyt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0d6x0"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.647357, 1, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mlgqo"]
+_data = {
+"RESET": SubResource("Animation_mgdyt"),
+"idle": SubResource("Animation_0d6x0")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m176v"]
+size = Vector3(4.05054, 2.16602, 1)
+
+[node name="WormDemon" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_0e6a0")
+_damageAmount = 5.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, -5.2318e-16, 3.02058e-16, 3.02058e-16, 0.866025, 0.5, -5.2318e-16, -0.5, 0.866025, 0, 0, 0)
+texture = ExtResource("1_3rjvj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mlgqo")
+}
+autoplay = "idle"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+navigation_layers = 2
+avoidance_enabled = true
+radius = 2.0
+debug_enabled = true
+debug_path_custom_color = Color(1, 0.176471, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.145672, 0)
+shape = SubResource("BoxShape3D_m176v")

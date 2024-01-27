@@ -1,315 +1,142 @@
-[gd_scene load_steps=16 format=3 uid="uid://breahcbiebm0e"]
+[gd_scene load_steps=25 format=3 uid="uid://breahcbiebm0e"]
 
-[ext_resource type="Texture2D" uid="uid://f4ym782smq7v" path="res://src/John/Assets/John.png" id="1_61p70"]
-[ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_ul4st"]
-[ext_resource type="Texture2D" uid="uid://s7gqupgrt0xm" path="res://src/John/Assets/Local_Demons_Storage.png" id="2_1qoyq"]
-[ext_resource type="Texture2D" uid="uid://bs0byxx1tjymf" path="res://src/John/Assets/Rake.png" id="3_585o6"]
+[ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_mwcc0"]
+[ext_resource type="Texture2D" uid="uid://dxe6245xhrs7n" path="res://src/John/Assets/Grab/john_grab-1.png" id="2_0qum8"]
+[ext_resource type="Texture2D" uid="uid://dm4qrj0a1nk7x" path="res://src/John/Assets/Idle/john_idle-1.png" id="2_5bph3"]
+[ext_resource type="Texture2D" uid="uid://5uq55v1spsiq" path="res://src/John/Assets/Idle/john_idle-2.png" id="3_mbcxe"]
+[ext_resource type="Texture2D" uid="uid://c8cjff8lcf7vk" path="res://src/John/Assets/Grab/john_grab-2.png" id="3_um12k"]
+[ext_resource type="Texture2D" uid="uid://b3drsausy743f" path="res://src/John/Assets/Grab/john_grab-3.png" id="4_23jp4"]
+[ext_resource type="Texture2D" uid="uid://1if4oid81ba" path="res://src/John/Assets/Idle/john_idle-3.png" id="4_pohff"]
+[ext_resource type="Texture2D" uid="uid://4gj6b24shlr0" path="res://src/John/Assets/Idle/john_idle-4.png" id="5_1r0j0"]
+[ext_resource type="Texture2D" uid="uid://cbdwxciyj5exd" path="res://src/John/Assets/Grab/john_grab-4.png" id="5_fyl7q"]
+[ext_resource type="Texture2D" uid="uid://dmmmirnarbs8" path="res://src/John/Assets/Grab/john_grab-5.png" id="6_e8jik"]
+[ext_resource type="Texture2D" uid="uid://clpr8u41jd6f7" path="res://src/John/Assets/Grab/john_grab-6.png" id="7_4b1b4"]
+[ext_resource type="Texture2D" uid="uid://c64jkj38lt1r7" path="res://src/John/Assets/Grab/john_grab-7.png" id="8_geviw"]
+[ext_resource type="Texture2D" uid="uid://26k6u0va3vrn" path="res://src/John/Assets/Grab/john_grab-8.png" id="9_p7lbj"]
+[ext_resource type="Texture2D" uid="uid://bcu0p7riyy8gc" path="res://src/John/Assets/Grab/john_grab-9.png" id="10_6x1nu"]
+[ext_resource type="Texture2D" uid="uid://dwak31255ldsi" path="res://src/John/Assets/Grab/john_grab-10.png" id="11_6n6j7"]
+[ext_resource type="Texture2D" uid="uid://fa65m4rukrvf" path="res://src/John/Assets/Grab/john_grab-11.png" id="12_g3fca"]
+[ext_resource type="Texture2D" uid="uid://clqd00ig1nu58" path="res://src/John/Assets/Grab/john_grab-12.png" id="13_njqvj"]
+[ext_resource type="Texture2D" uid="uid://k3r231347e56" path="res://src/John/Assets/Grab/john_grab-13.png" id="14_5y2s3"]
+[ext_resource type="Texture2D" uid="uid://xpwk3raafd68" path="res://src/John/Assets/Grab/john_grab-14.png" id="15_p6nm8"]
+[ext_resource type="Script" path="res://src/StateMachine/StateMachine.cs" id="20_7ymks"]
+[ext_resource type="Script" path="res://src/John/Presentation/States/GrabState.cs" id="21_oho77"]
+[ext_resource type="Script" path="res://src/John/Presentation/States/IdleState.cs" id="21_qgoff"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5r42w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0qum8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_um12k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_23jp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fyl7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e8jik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4b1b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_geviw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p7lbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6x1nu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6n6j7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_g3fca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_njqvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5y2s3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_p6nm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_um12k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_23jp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0qum8")
+}],
+"loop": false,
+"name": &"grab",
+"speed": 40.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5bph3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mbcxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pohff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1r0j0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmdql"]
 radius = 1.53516
 height = 4.75259
 
-[sub_resource type="Animation" id="Animation_sr1wm"]
-resource_name = "Grab"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/RakePivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.391978, -0.956586, 0), Vector3(-0.262899, 0.00446042, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/RakePivot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.50636), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/RakePivot/Rake:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.960417, -0.967968, 0), Vector3(-1.72335, -0.976343, 0), Vector3(-1.72335, -0.976343, 0), Vector3(-0.960417, -0.967968, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprites/RakePivot/Rake:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 1.06554), Vector3(0, 0, 1.58177), Vector3(0, 0, 1.58177), Vector3(0, 0, 1.06554)]
-}
-
-[sub_resource type="Animation" id="Animation_bg5tk"]
-resource_name = "Idle"
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/John:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 0.7, 1), Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/John:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(2.08165e-12, -0.7, 2.08165e-12), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/Storage:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(2.15868, 0.331764, 0), Vector3(2.17799, 0.0767705, 0), Vector3(2.15868, 0.331764, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprites/RakePivot:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12), Vector3(0, -0.269385, 0), Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprites/RakePivot/Rake:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 1.06554), Vector3(0, 0, 1.21599), Vector3(0, 0, 1.06554)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprites/RakePivot/Rake:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.44817, -0.466389, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sprites/RakePivot:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0.620642)]
-}
-
-[sub_resource type="Animation" id="Animation_ycoyk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/John:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/John:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/Storage:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(2.15868, 0.331764, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprites/RakePivot:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprites/RakePivot/Rake:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 1.06554)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprites/RakePivot/Rake:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.72335, -0.976343, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Sprites/RakePivot:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -2.50636)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvcti"]
-_data = {
-"Grab": SubResource("Animation_sr1wm"),
-"Idle": SubResource("Animation_bg5tk"),
-"RESET": SubResource("Animation_ycoyk")
-}
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h5fq6"]
-animation = &"Grab"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ll1u0"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y2rex"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mpd8s"]
-advance_mode = 2
-advance_condition = &"grabbing"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tnkdc"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_x2jri"]
-states/Grab/node = SubResource("AnimationNodeAnimation_h5fq6")
-states/Grab/position = Vector2(603, 79)
-states/Idle/node = SubResource("AnimationNodeAnimation_ll1u0")
-states/Idle/position = Vector2(396, 79)
-states/Start/position = Vector2(204, 79)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y2rex"), "Idle", "Grab", SubResource("AnimationNodeStateMachineTransition_mpd8s"), "Grab", "Idle", SubResource("AnimationNodeStateMachineTransition_tnkdc")]
-
 [node name="John" type="CharacterBody3D"]
-collision_mask = 2
+collision_mask = 10
 platform_wall_layers = 2
-script = ExtResource("1_ul4st")
+script = ExtResource("1_mwcc0")
 
-[node name="Sprites" type="Node3D" parent="."]
-
-[node name="John" type="Sprite3D" parent="Sprites"]
-sorting_offset = 5.0
-texture = ExtResource("1_61p70")
-
-[node name="Storage" type="Sprite3D" parent="Sprites"]
-transform = Transform3D(0.980154, -0.198239, 0, 0.198239, 0.980154, 0, 0, 0, 1, 2.15868, 0.331764, 0)
-texture = ExtResource("2_1qoyq")
-
-[node name="RakePivot" type="Node3D" parent="Sprites"]
-transform = Transform3D(-0.804934, 0.593365, 0, -0.593365, -0.804934, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Rake" type="Sprite3D" parent="Sprites/RakePivot"]
-transform = Transform3D(0.484032, -0.875051, 0, 0.875051, 0.484032, 0, 0, 0, 1, -1.72335, -0.976343, 0)
-sorting_offset = 10.0
-texture = ExtResource("3_585o6")
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5r42w")
+animation = &"grab"
+autoplay = "idle"
+frame = 16
+frame_progress = 1.0
 
 [node name="Collsiion" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qmdql")
 
-[node name="DashTime" type="Timer" parent="."]
+[node name="States" type="Node" parent="." node_paths=PackedStringArray("_initialState")]
+script = ExtResource("20_7ymks")
+_initialState = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="States" node_paths=PackedStringArray("_characterBody3D", "_body", "_dashTimer", "_animatedSprite", "_grabState")]
+script = ExtResource("21_qgoff")
+_characterBody3D = NodePath("../..")
+_body = NodePath("../../AnimatedSprite3D")
+_speed = 15.0
+_dashFactor = 6.0
+_dashTimer = NodePath("DashTimer")
+_animatedSprite = NodePath("../../AnimatedSprite3D")
+_grabState = NodePath("../GrabState")
+
+[node name="DashTimer" type="Timer" parent="States/IdleState"]
 wait_time = 0.3
 one_shot = true
 
-[node name="GrabTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Animator" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yvcti")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yvcti")
-}
-tree_root = SubResource("AnimationNodeStateMachine_x2jri")
-anim_player = NodePath("../Animator")
-parameters/conditions/grabbing = false
+[node name="GrabState" type="Node" parent="States" node_paths=PackedStringArray("_idleState", "_animatedSprite")]
+script = ExtResource("21_oho77")
+_idleState = NodePath("../IdleState")
+_animatedSprite = NodePath("../../AnimatedSprite3D")

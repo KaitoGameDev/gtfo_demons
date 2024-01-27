@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d317qbyuutjna"
-path.s3tc="res://.godot/imported/Paradox_Box.png-4942a4393554bf87efd25de3da950cb1.s3tc.ctex"
+uid="uid://dmmmirnarbs8"
+path.s3tc="res://.godot/imported/john_grab-5.png-733bf79003e11b550a52e7290e8e4264.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/MollysHouse/Assets/Paradox_Box.png"
-dest_files=["res://.godot/imported/Paradox_Box.png-4942a4393554bf87efd25de3da950cb1.s3tc.ctex"]
+source_file="res://src/John/Assets/Grab/john_grab-5.png"
+dest_files=["res://.godot/imported/john_grab-5.png-733bf79003e11b550a52e7290e8e4264.s3tc.ctex"]
 
 [params]
 

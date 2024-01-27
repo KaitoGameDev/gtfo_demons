@@ -21,7 +21,6 @@ public partial class InGameGameplayManager : Node, IGameplayManager
     public void ResumeGameplay()
     {
         _isActive = true;
-        GD.Print("ACTIVE");
         _emitter.OnNext(_isActive);
     }
 

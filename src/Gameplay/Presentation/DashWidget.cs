@@ -1,21 +1,20 @@
-using System;
 using System.Linq;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using Godot;
+using gtfo_demons.InputSystem;
 
 namespace gtfo_demons.Gameplay.Presentation;
 
 public partial class DashWidget : Control
 {
+	[Signal] public delegate void OnDashStartedEventHandler();
+	
 	private Panel _dashContainer;
 	private Timer _timer;
-	private readonly Subject<Unit> _emitter = new();
 	private Label _buttonKey;
 
 	private bool _isDashAllowed = true;
 	private IGameplayManager _gameplayManager;
+	private IInputSystem _inputSystem = new InputSystem.InputSystem();
 	public override void _Ready()
 	{
 		_gameplayManager = GameplayFactory.GetGameplayManagerOrDefault(GetTree());
@@ -52,7 +51,7 @@ public partial class DashWidget : Control
 
 		if (!_gameplayManager.IsGameplayActive()) return;
 		
-		if (Input.IsActionJustPressed("Dash") && _isDashAllowed)
+		if (_inputSystem.IsDashPressed() && _isDashAllowed)
 		{
 			_OnDashPressed();
 		}
@@ -62,9 +61,7 @@ public partial class DashWidget : Control
 	{
 		_isDashAllowed = false;
 		_timer.Start();
-		_emitter.OnNext(Unit.Default);
+		EmitSignal(SignalName.OnDashStarted);
 		_dashContainer.Modulate = Colors.Gray;
 	}
-
-	public IObservable<Unit> OnDashPressed() => _emitter.AsObservable();
 }
