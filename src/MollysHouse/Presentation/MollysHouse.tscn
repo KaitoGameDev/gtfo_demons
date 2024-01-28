@@ -51,6 +51,9 @@ motion_mode = 1
 frame = 15
 frame_progress = 0.0
 
+[node name="RakeArea" parent="John/AnimatedSprite3D" index="1"]
+visible = true
+
 [node name="IdleState" parent="John/States" index="0" node_paths=PackedStringArray("_dashWidget")]
 _dashWidget = NodePath("../../../CanvasLayer/DashWidget")
 

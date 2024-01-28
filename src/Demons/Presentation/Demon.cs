@@ -16,7 +16,6 @@ public partial class Demon: CharacterBody3D
     }
     public override void _Ready()
     {
-        GD.Print($"DIR: {GlobalPosition}");
         _agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         _agent.TargetPosition = _target.GlobalPosition;
         SetPhysicsProcess(false);
@@ -26,11 +25,11 @@ public partial class Demon: CharacterBody3D
         }));
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
+    public override void _PhysicsProcess(double delta) {
+        if (_target == null) return;
+        
         Vector3 velocity = Velocity;
 
-        // Add the gravity.
         if (!IsOnFloor())
             velocity.Y -= 9.8f * (float)delta;
 
@@ -51,4 +50,8 @@ public partial class Demon: CharacterBody3D
     }
 
     public float GetDamageAmount() => _damageAmount;
+
+    public void Grabbed() {
+        _target = null;
+    }
 }

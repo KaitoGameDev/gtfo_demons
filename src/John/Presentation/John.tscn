@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://breahcbiebm0e"]
+[gd_scene load_steps=31 format=3 uid="uid://breahcbiebm0e"]
 
 [ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_mwcc0"]
 [ext_resource type="Texture2D" uid="uid://dxe6245xhrs7n" path="res://src/John/Assets/Grab/john_grab-1.png" id="2_0qum8"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://src/StateMachine/StateMachine.cs" id="20_7ymks"]
 [ext_resource type="Script" path="res://src/John/Presentation/States/GrabState.cs" id="21_oho77"]
 [ext_resource type="Script" path="res://src/John/Presentation/States/IdleState.cs" id="21_qgoff"]
+[ext_resource type="Script" path="res://src/John/Presentation/RakeArea.cs" id="23_sdykg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5r42w"]
 animations = [{
@@ -99,6 +100,62 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cboe"]
+
+[sub_resource type="Animation" id="Animation_e7q28"]
+resource_name = "grab"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D/RakePivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.736093), Vector3(0, 0, -1.81351), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2kyff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D/RakePivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s6xme"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D/RakePivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7654d"]
+_data = {
+"RESET": SubResource("Animation_2kyff"),
+"grab": SubResource("Animation_e7q28"),
+"idle": SubResource("Animation_s6xme")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmdql"]
 radius = 1.53516
 height = 4.75259
@@ -115,7 +172,29 @@ autoplay = "idle"
 frame = 16
 frame_progress = 1.0
 
-[node name="Collsiion" type="CollisionShape3D" parent="."]
+[node name="RakePivot" type="Node3D" parent="AnimatedSprite3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="RakePoint" type="Node3D" parent="AnimatedSprite3D/RakePivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68855, 0.821113, 0)
+
+[node name="RakeArea" type="Area3D" parent="AnimatedSprite3D" node_paths=PackedStringArray("_rakePoint")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.42701, 0.835057, 0)
+visible = false
+collision_layer = 8388608
+collision_mask = 4
+script = ExtResource("23_sdykg")
+_rakePoint = NodePath("../RakePivot/RakePoint")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatedSprite3D/RakeArea"]
+shape = SubResource("BoxShape3D_8cboe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7654d")
+}
+
+[node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_qmdql")
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("_initialState")]
@@ -136,7 +215,9 @@ _grabState = NodePath("../GrabState")
 wait_time = 0.3
 one_shot = true
 
-[node name="GrabState" type="Node" parent="States" node_paths=PackedStringArray("_idleState", "_animatedSprite")]
+[node name="GrabState" type="Node" parent="States" node_paths=PackedStringArray("_idleState", "_animatedSprite", "_animationPlayer", "_rakeArea")]
 script = ExtResource("21_oho77")
 _idleState = NodePath("../IdleState")
 _animatedSprite = NodePath("../../AnimatedSprite3D")
+_animationPlayer = NodePath("../../AnimationPlayer")
+_rakeArea = NodePath("../../AnimatedSprite3D/RakeArea")
