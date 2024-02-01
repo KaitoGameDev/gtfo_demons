@@ -1,8 +1,12 @@
 using Godot;
 using gtfo_demons.MollysHouse.Presentation;
 
+namespace gtfo_demons.Gameplay.Presentation; 
+
 public partial class BuildingHealthBar : Control
 {
+	[Signal] public delegate void OnBuildingDestroyedEventHandler();
+	
 	[Export] private int _initialHealth;
 	[Export] private string _name;
 	[Export] private LevelBuildings _building;
@@ -39,9 +43,9 @@ public partial class BuildingHealthBar : Control
 	{
 		_healthBar.Value -= amount;
 		_delayedTimer.Start();
+		if (_healthBar.Value == 0) EmitSignal(SignalName.OnBuildingDestroyed);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 #if DEBUG

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=17 format=3 uid="uid://bsce3uyl7rge6"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="1_lea2h"]
 [ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="1_oempw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dt5hk08rs16h6" path="res://src/Gameplay/Presentation/DashWidget.tscn" id="7_6h43l"]
 [ext_resource type="PackedScene" uid="uid://d23bdp07c2gt5" path="res://src/ParadoxBox/Presentation/ParadoxBox.tscn" id="7_d1710"]
 [ext_resource type="PackedScene" uid="uid://kaxarfstoj52" path="res://src/Demons/Presentation/DemonPortal.tscn" id="10_c6ach"]
+[ext_resource type="PackedScene" uid="uid://b3hy0mmgvx5li" path="res://src/Gameplay/Presentation/GameOverPopUp.tscn" id="10_gb47a"]
 [ext_resource type="Script" path="res://src/Demons/Presentation/DemonPortals.cs" id="10_jxiq4"]
 [ext_resource type="PackedScene" uid="uid://b7peuvxxa3rj" path="res://src/Gameplay/Presentation/BuildingHealthBar.tscn" id="10_k07o4"]
 [ext_resource type="PackedScene" uid="uid://6bryfeq255wg" path="res://src/Demons/Presentation/WormDemon.tscn" id="11_58wa7"]
@@ -22,8 +23,10 @@ albedo_texture = ExtResource("3_3tbf8")
 
 [sub_resource type="Environment" id="Environment_ndfht"]
 
-[node name="MollysHouse" type="Node3D"]
+[node name="MollysHouse" type="Node3D" node_paths=PackedStringArray("_buildingHealthBar", "_gameOverPopUp")]
 script = ExtResource("1_y10a5")
+_buildingHealthBar = NodePath("CanvasLayer/BuildingHealthBar")
+_gameOverPopUp = NodePath("CanvasLayer/GameOverPopUp")
 
 [node name="GameplayManager" type="Node" parent="."]
 script = ExtResource("1_lea2h")
@@ -313,11 +316,15 @@ grow_horizontal = 1
 grow_vertical = 0
 
 [node name="BuildingHealthBar" parent="CanvasLayer" node_paths=PackedStringArray("_building") instance=ExtResource("10_k07o4")]
-offset_top = 945.0
-offset_bottom = 945.0
+anchor_top = 0.87963
+anchor_bottom = 0.972222
+grow_vertical = 0
 _initialHealth = 100
 _name = "Molly's House"
 _building = NodePath("../../House")
+
+[node name="GameOverPopUp" parent="CanvasLayer" instance=ExtResource("10_gb47a")]
+visible = false
 
 [node name="Border_1" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.5315, 2.15729, 0)

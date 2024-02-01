@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3hy0mmgvx5li"]
+
+[ext_resource type="Script" path="res://src/Gameplay/Presentation/GameOverPopUp.cs" id="1_pewke"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks4fo"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 0.392157)
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="GameOverPopUp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pewke")
+
+[node name="Overlay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ks4fo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.29537
+anchor_right = 1.0
+anchor_bottom = 0.70463
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0489583
+anchor_top = 0.0678733
+anchor_right = 0.951042
+anchor_bottom = 0.239819
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 55
+text = "has been destroyed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15625
+anchor_top = 0.454751
+anchor_right = 0.84375
+anchor_bottom = 0.642534
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="RetryBtn" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.729412, 0.729412, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+flat = true
+
+[node name="MainMenuBtn" type="Button" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.729412, 0.729412, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Back To Main"
+flat = true
