@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=21 format=3 uid="uid://bsce3uyl7rge6"]
 
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_y10a5"]
-[ext_resource type="Texture2D" uid="uid://c5pqbc3a0kqev" path="res://src/MollysHouse/Assets/Background.png" id="3_3tbf8"]
 [ext_resource type="Texture2D" uid="uid://crsxqtf4pcifw" path="res://src/MollysHouse/Assets/Tree.png" id="4_aoeby"]
 [ext_resource type="PackedScene" uid="uid://bs28wwy62t6s6" path="res://src/MollysHouse/Presentation/House.tscn" id="4_p5gux"]
 [ext_resource type="PackedScene" uid="uid://c1yo6faoxkc8c" path="res://src/Gameplay/Presentation/ActionWidget.tscn" id="6_1x24t"]
@@ -11,19 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="10_cmspo"]
 [ext_resource type="PackedScene" uid="uid://b7mnwlmm4ael6" path="res://src/Gameplay/Presentation/WaveTimer.tscn" id="10_fhfdl"]
 [ext_resource type="PackedScene" uid="uid://dct4eaja8m3v2" path="res://src/Gameplay/Presentation/GameOverPopUp.tscn" id="10_gb47a"]
-[ext_resource type="Script" path="res://src/Demons/Presentation/DemonPortals.cs" id="10_jxiq4"]
 [ext_resource type="PackedScene" uid="uid://b7peuvxxa3rj" path="res://src/Gameplay/Presentation/BuildingHealthBar.tscn" id="10_k07o4"]
 [ext_resource type="PackedScene" uid="uid://6bryfeq255wg" path="res://src/Demons/Presentation/WormDemon.tscn" id="11_58wa7"]
 [ext_resource type="PackedScene" uid="uid://cco3y0l2qiv6m" path="res://src/Gameplay/Presentation/WinPopUp.tscn" id="11_i0xve"]
+[ext_resource type="PackedScene" uid="uid://cdqjxuq3hwxiw" path="res://src/Demons/Presentation/RunningDemon.tscn" id="14_88ljp"]
 [ext_resource type="Texture2D" uid="uid://kljduouolebr" path="res://src/Demons/Assets/flame.png" id="16_s4d28"]
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/Flame.cs" id="17_xala1"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_nm5so"]
-vertices = PackedVector3Array(-105.518, 0.4, -49.5, -105.518, 0.4, 49.5, 109.982, 0.4, 49.5, 109.982, 0.4, -49.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1sev"]
-albedo_texture = ExtResource("3_3tbf8")
 
 [sub_resource type="Environment" id="Environment_ndfht"]
 
@@ -95,18 +87,6 @@ _buildingHealthBar = NodePath("CanvasLayer/BuildingHealthBar")
 _gameOverPopUp = NodePath("CanvasLayer/GameOverPopUp")
 _waveTimer = NodePath("CanvasLayer/WaveTimer")
 _winPopUp = NodePath("CanvasLayer/WinPopUp")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_nm5so")
-navigation_layers = 2
-
-[node name="Terrain" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19507, 0, 0)
-material_override = SubResource("StandardMaterial3D_f1sev")
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(216.426, 0.2, 100)
 
 [node name="House" parent="." instance=ExtResource("4_p5gux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5841, -3.8147e-06, 4.18477)
@@ -405,28 +385,35 @@ use_collision = true
 collision_layer = 2
 size = Vector3(1, 4.60571, 82.51)
 
-[node name="DemonsSpawner" type="Node3D" parent="." node_paths=PackedStringArray("_summonTime", "_target")]
+[node name="Portals" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.6573, 4.99062, 6.87499)
-script = ExtResource("10_jxiq4")
-_summonTime = NodePath("SummonTimer")
-_availableDemons = Array[PackedScene]([ExtResource("11_58wa7")])
-_minSummonIntervalInSeg = 3
-_maxSummonIntervalInSeg = 7
-_target = NodePath("../House")
 
-[node name="SummonTimer" type="Timer" parent="DemonsSpawner"]
+[node name="DemonPortal" parent="Portals" node_paths=PackedStringArray("_summonTime", "_target") instance=ExtResource("10_c6ach")]
+transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 6.6361, 0, -28.2239)
+_summonTime = NodePath("Timer")
+_availableDemons = Array[PackedScene]([ExtResource("11_58wa7"), ExtResource("14_88ljp")])
+_target = NodePath("../../House")
+
+[node name="Timer" type="Timer" parent="Portals/DemonPortal"]
 one_shot = true
 
-[node name="Portals" type="Node3D" parent="DemonsSpawner"]
-
-[node name="DemonPortal" parent="DemonsSpawner/Portals" instance=ExtResource("10_c6ach")]
-transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 7.11326, 0, -20.6422)
-
-[node name="DemonPortal2" parent="DemonsSpawner/Portals" instance=ExtResource("10_c6ach")]
+[node name="DemonPortal2" parent="Portals" node_paths=PackedStringArray("_summonTime", "_target") instance=ExtResource("10_c6ach")]
 transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 5.8681, 0, -3.72321)
+_summonTime = NodePath("Timer")
+_availableDemons = Array[PackedScene]([ExtResource("11_58wa7"), ExtResource("14_88ljp")])
+_target = NodePath("../../House")
 
-[node name="DemonPortal3" parent="DemonsSpawner/Portals" instance=ExtResource("10_c6ach")]
-transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 6.07777, 0, 12.9264)
+[node name="Timer" type="Timer" parent="Portals/DemonPortal2"]
+one_shot = true
+
+[node name="DemonPortal3" parent="Portals" node_paths=PackedStringArray("_summonTime", "_target") instance=ExtResource("10_c6ach")]
+transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 6.83171, 7.62939e-06, 18.3156)
+_summonTime = NodePath("Timer")
+_availableDemons = Array[PackedScene]([ExtResource("11_58wa7"), ExtResource("14_88ljp")])
+_target = NodePath("../../House")
+
+[node name="Timer" type="Timer" parent="Portals/DemonPortal3"]
+one_shot = true
 
 [node name="John" parent="." instance=ExtResource("10_cmspo")]
 transform = Transform3D(1, -5.2318e-16, 3.02058e-16, 3.02058e-16, 0.866025, 0.5, -5.2318e-16, -0.5, 0.866025, 0, 3.52175, 0)

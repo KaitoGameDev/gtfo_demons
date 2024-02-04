@@ -1,37 +1,38 @@
-[gd_scene load_steps=7 format=3 uid="uid://6bryfeq255wg"]
+[gd_scene load_steps=7 format=3 uid="uid://cdqjxuq3hwxiw"]
 
-[ext_resource type="Script" path="res://src/Demons/Presentation/Demon.cs" id="1_0e6a0"]
-[ext_resource type="Texture2D" uid="uid://cedkgume5kef1" path="res://src/Demons/Assets/Worm_Demon.png" id="1_3rjvj"]
+[ext_resource type="Script" path="res://src/Demons/Presentation/Demon.cs" id="1_qyrg2"]
+[ext_resource type="Texture2D" uid="uid://d2un8k2qoxupa" path="res://src/Demons/Assets/basic_demon.png" id="2_lobe7"]
 
 [sub_resource type="Animation" id="Animation_mgdyt"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/path = NodePath("Sprite3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 1, 1)]
+"values": [Vector3(-0.523599, 3.48787e-16, 3.48787e-16)]
 }
 
 [sub_resource type="Animation" id="Animation_0d6x0"]
 resource_name = "idle"
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:scale")
+tracks/0/path = NodePath("Sprite3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(0.647357, 1, 1), Vector3(1, 1, 1)]
+"values": [Vector3(-0.523599, 3.48787e-16, 3.48787e-16), Vector3(-0.523599, -1.14882e-08, 0.156957), Vector3(-0.523599, -3.64176e-09, -0.159093), Vector3(-0.523599, 3.48787e-16, 3.48787e-16)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mlgqo"]
@@ -41,17 +42,18 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m176v"]
-size = Vector3(4.05054, 2.74487, 1)
+size = Vector3(4.05054, 5.00781, 2.39746)
 
 [node name="WormDemon" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 8388610
-script = ExtResource("1_0e6a0")
+script = ExtResource("1_qyrg2")
+_speed = 10.0
 _damageAmount = 3.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, -5.2318e-16, 3.02058e-16, 3.02058e-16, 0.866025, 0.5, -5.2318e-16, -0.5, 0.866025, 0, 0, 0)
-texture = ExtResource("1_3rjvj")
+transform = Transform3D(1.7, -8.89406e-16, 5.13498e-16, 5.13499e-16, 1.47224, 0.849999, -8.89407e-16, -0.849999, 1.47224, -4.19527e-24, 0.64399, -0.00156072)
+texture = ExtResource("2_lobe7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
