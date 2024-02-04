@@ -6,7 +6,7 @@ namespace gtfo_demons.Gameplay;
 public class DefaultGameplayManager: IGameplayManager
 {
     private readonly ISubject<bool> _subject = new Subject<bool>();
-    private bool _isActive = true;
+    private bool _isActive = false;
 
     public bool IsGameplayActive() => _isActive;
 
