@@ -6,5 +6,6 @@ public interface IInputSystem
 {
     public Vector2 GetMovementDirection();
     public bool IsGrabPressed();
+    public bool IsReleasePressed();
     public bool IsDashPressed();
 }

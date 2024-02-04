@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://breahcbiebm0e"]
+[gd_scene load_steps=38 format=3 uid="uid://breahcbiebm0e"]
 
 [ext_resource type="Script" path="res://src/John/Presentation/John.cs" id="1_mwcc0"]
 [ext_resource type="Texture2D" uid="uid://dxe6245xhrs7n" path="res://src/John/Assets/Grab/john_grab-1.png" id="2_0qum8"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://src/John/Presentation/States/GrabState.cs" id="21_oho77"]
 [ext_resource type="Script" path="res://src/John/Presentation/States/IdleState.cs" id="21_qgoff"]
 [ext_resource type="Script" path="res://src/John/Presentation/RakeArea.cs" id="23_sdykg"]
+[ext_resource type="Script" path="res://src/John/Presentation/Storage.cs" id="24_4h82v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5r42w"]
 animations = [{
@@ -102,6 +103,9 @@ animations = [{
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8cboe"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_25l71"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [sub_resource type="Animation" id="Animation_2kyff"]
 length = 0.001
 tracks/0/type = "value"
@@ -156,9 +160,61 @@ _data = {
 "idle": SubResource("Animation_s6xme")
 }
 
+[sub_resource type="Animation" id="Animation_w6go0"]
+resource_name = "overloaded"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite3D/StorageBar:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.117356), Vector3(0, 0, 0.34938), Vector3(0, 0, -0.229802), Vector3(0, 0, 0.117356)]
+}
+
+[sub_resource type="Animation" id="Animation_ka7qo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite3D/StorageBar:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.117356)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38bnw"]
+_data = {
+"RESET": SubResource("Animation_ka7qo"),
+"overloaded": SubResource("Animation_w6go0")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmdql"]
 radius = 1.53516
 height = 4.75259
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpw00"]
+bg_color = Color(0.941176, 0.756863, 0.290196, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgx7m"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="John" type="CharacterBody3D"]
 collision_mask = 10
@@ -177,20 +233,30 @@ frame_progress = 1.0
 [node name="RakePoint" type="Node3D" parent="AnimatedSprite3D/RakePivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68855, 0.821113, 0)
 
-[node name="RakeArea" type="Area3D" parent="AnimatedSprite3D" node_paths=PackedStringArray("_rakePoint")]
+[node name="RakeArea" type="Area3D" parent="AnimatedSprite3D" node_paths=PackedStringArray("_rakePoint", "_storage")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.42701, 0.835057, 0)
-visible = false
 collision_layer = 8388608
 collision_mask = 4
 script = ExtResource("23_sdykg")
 _rakePoint = NodePath("../RakePivot/RakePoint")
+_storage = NodePath("../../Storage")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatedSprite3D/RakeArea"]
 shape = SubResource("BoxShape3D_8cboe")
 
+[node name="StorageBar" type="Sprite3D" parent="AnimatedSprite3D"]
+transform = Transform3D(0.993122, -0.117087, 0, 0.117087, 0.993122, 0, 0, 0, 1, 5.49779, 0.877271, 0)
+texture = SubResource("ViewportTexture_25l71")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7654d")
+}
+
+[node name="StorageBarAnimator" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SubViewportContainer")
+libraries = {
+"": SubResource("AnimationLibrary_38bnw")
 }
 
 [node name="Collision" type="CollisionShape3D" parent="."]
@@ -200,14 +266,15 @@ shape = SubResource("CapsuleShape3D_qmdql")
 script = ExtResource("20_7ymks")
 _initialState = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="States" node_paths=PackedStringArray("_characterBody3D", "_body", "_dashTimer", "_animatedSprite", "_grabState")]
+[node name="IdleState" type="Node" parent="States" node_paths=PackedStringArray("_characterBody3D", "_body", "_dashTimer", "_animatedSprite", "_storage", "_grabState")]
 script = ExtResource("21_qgoff")
 _characterBody3D = NodePath("../..")
 _body = NodePath("../../AnimatedSprite3D")
-_speed = 15.0
+_normalSpeed = 15.0
 _dashFactor = 6.0
 _dashTimer = NodePath("DashTimer")
 _animatedSprite = NodePath("../../AnimatedSprite3D")
+_storage = NodePath("../../Storage")
 _grabState = NodePath("../GrabState")
 
 [node name="DashTimer" type="Timer" parent="States/IdleState"]
@@ -220,3 +287,49 @@ _idleState = NodePath("../IdleState")
 _animatedSprite = NodePath("../../AnimatedSprite3D")
 _animationPlayer = NodePath("../../AnimationPlayer")
 _rakeArea = NodePath("../../AnimatedSprite3D/RakeArea")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 0, 18.0691, 25.677)
+
+[node name="Storage" type="Node3D" parent="." node_paths=PackedStringArray("_progressBar", "_storageBarAnimator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19129, -0.155647, 0)
+script = ExtResource("24_4h82v")
+_capacity = 20
+_overloadedCapacity = 5
+_progressBar = NodePath("../SubViewportContainer/SubViewport/Control/ProgressBar")
+_barStyle = SubResource("StyleBoxFlat_lpw00")
+_storageBarAnimator = NodePath("../StorageBarAnimator")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+light_mask = 0
+visibility_layer = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 384)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewportContainer/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bgx7m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lpw00")
+step = 1.0
+value = 50.0
+fill_mode = 3
+show_percentage = false

@@ -41,7 +41,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m176v"]
-size = Vector3(4.05054, 3.2251, 2.8938)
+size = Vector3(4.05054, 2.74487, 1)
 
 [node name="WormDemon" type="CharacterBody3D"]
 collision_layer = 4
@@ -67,5 +67,5 @@ debug_enabled = true
 debug_path_custom_color = Color(1, 0.176471, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.383868, 0.0789795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0944412, 0.0789795)
 shape = SubResource("BoxShape3D_m176v")

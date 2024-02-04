@@ -49,7 +49,7 @@ public partial class BuildingHealthBar : Control
 	public override void _Process(double delta)
 	{
 #if DEBUG
-		if (Input.IsActionJustPressed("ui_accept"))
+		if (Input.IsKeyPressed(Key.H))
 		{
 			OnDamagedReceived(10);
 		}

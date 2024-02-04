@@ -1,4 +1,5 @@
 using Godot;
+using gtfo_demons.Gameplay;
 using gtfo_demons.InputSystem;
 
 namespace gtfo_demons.StateMachine;
@@ -9,15 +10,17 @@ public partial class StateMachine: Node
 
     private State _currentState;
     private IInputSystem _inputSystem;
+    private IGameplayManager _gameplayManager;
 
-    public override void _Ready()
-    {
+    public override void _Ready() {
+        _gameplayManager = GameplayFactory.GetPlayerManager();
         _inputSystem = new InputSystem.InputSystem();
         OnStateChanged(_initialState);
     }
 
-    public override void _Process(double delta)
-    {
+    public override void _Process(double delta) {
+        if (!_gameplayManager.IsGameplayActive()) return;
+        
         _currentState.HandleInput(delta, _inputSystem);
     }
 

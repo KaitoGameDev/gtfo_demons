@@ -1,24 +1,30 @@
 using System.Linq;
 using Godot;
 using gtfo_demons.InputSystem;
+using gtfo_demons.John.Domain;
+using gtfo_demons.John.Factory;
 
 namespace gtfo_demons.Gameplay.Presentation;
 
 public partial class DashWidget : Control
 {
-	[Signal] public delegate void OnDashStartedEventHandler();
 	
 	private Panel _dashContainer;
 	private Timer _timer;
 	private Label _buttonKey;
+	private IGameplayManager _gameplayManager;
+	private IPlayerInteractions _playerInteractions;
 
 	private bool _isDashAllowed = true;
-	private IGameplayManager _gameplayManager;
-	private IInputSystem _inputSystem = new InputSystem.InputSystem();
-	public override void _Ready()
-	{
-		_gameplayManager = GameplayFactory.GetGameplayManagerOrDefault(GetTree());
+	private readonly IInputSystem _inputSystem = new InputSystem.InputSystem();
+	public override void _Ready() {
+		_gameplayManager = GameplayFactory.GetPlayerManager();
+		_playerInteractions = PlayerServicesFactory.GetPlayerInteractions();
 		
+		LoadInternalNodes();
+	}
+
+	private void LoadInternalNodes() {
 		_buttonKey = GetNode<Label>("Panel/Key/ButtonKey");
 		_timer = GetNode<Timer>("Timer");
 		_timer.Connect("timeout", Callable.From(OnTimeoutRestoreDash));
@@ -61,7 +67,7 @@ public partial class DashWidget : Control
 	{
 		_isDashAllowed = false;
 		_timer.Start();
-		EmitSignal(SignalName.OnDashStarted);
+		_playerInteractions.DashPressed();
 		_dashContainer.Modulate = Colors.Gray;
 	}
 }

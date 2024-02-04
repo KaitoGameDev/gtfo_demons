@@ -6,6 +6,7 @@ namespace gtfo_demons.John.Presentation;
 public partial class RakeArea: Area3D {
     private Demon _demon;
     [Export] private Node3D _rakePoint;
+    [Export] private Storage _storage;
 
     public override void _Ready() {
         Monitoring = false;
@@ -29,5 +30,6 @@ public partial class RakeArea: Area3D {
         _demon.Grabbed();
         _demon.Reparent(_rakePoint);
         _demon.Position = Vector3.Zero;
+        _storage.SaveDemon(1);
     }
 }

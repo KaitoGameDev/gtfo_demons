@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3hy0mmgvx5li"]
+[gd_scene load_steps=3 format=3 uid="uid://dct4eaja8m3v2"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Presentation/GameOverPopUp.cs" id="1_pewke"]
 
@@ -14,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pewke")
+_level = "res://src/MollysHouse/Presentation/MollysHouse.tscn"
 
 [node name="Overlay" type="Panel" parent="."]
 layout_mode = 1

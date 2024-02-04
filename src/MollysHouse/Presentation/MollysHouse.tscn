@@ -1,18 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=24 format=3 uid="uid://bsce3uyl7rge6"]
 
-[ext_resource type="Script" path="res://src/Gameplay/Managers/InGameGameplayManager.cs" id="1_lea2h"]
-[ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="1_oempw"]
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_y10a5"]
 [ext_resource type="Texture2D" uid="uid://c5pqbc3a0kqev" path="res://src/MollysHouse/Assets/Background.png" id="3_3tbf8"]
 [ext_resource type="Texture2D" uid="uid://crsxqtf4pcifw" path="res://src/MollysHouse/Assets/Tree.png" id="4_aoeby"]
 [ext_resource type="PackedScene" uid="uid://bs28wwy62t6s6" path="res://src/MollysHouse/Presentation/House.tscn" id="4_p5gux"]
+[ext_resource type="PackedScene" uid="uid://c1yo6faoxkc8c" path="res://src/Gameplay/Presentation/ActionWidget.tscn" id="6_1x24t"]
 [ext_resource type="PackedScene" uid="uid://dt5hk08rs16h6" path="res://src/Gameplay/Presentation/DashWidget.tscn" id="7_6h43l"]
 [ext_resource type="PackedScene" uid="uid://d23bdp07c2gt5" path="res://src/ParadoxBox/Presentation/ParadoxBox.tscn" id="7_d1710"]
 [ext_resource type="PackedScene" uid="uid://kaxarfstoj52" path="res://src/Demons/Presentation/DemonPortal.tscn" id="10_c6ach"]
-[ext_resource type="PackedScene" uid="uid://b3hy0mmgvx5li" path="res://src/Gameplay/Presentation/GameOverPopUp.tscn" id="10_gb47a"]
+[ext_resource type="PackedScene" uid="uid://breahcbiebm0e" path="res://src/John/Presentation/John.tscn" id="10_cmspo"]
+[ext_resource type="PackedScene" uid="uid://b7mnwlmm4ael6" path="res://src/Gameplay/Presentation/WaveTimer.tscn" id="10_fhfdl"]
+[ext_resource type="PackedScene" uid="uid://dct4eaja8m3v2" path="res://src/Gameplay/Presentation/GameOverPopUp.tscn" id="10_gb47a"]
 [ext_resource type="Script" path="res://src/Demons/Presentation/DemonPortals.cs" id="10_jxiq4"]
 [ext_resource type="PackedScene" uid="uid://b7peuvxxa3rj" path="res://src/Gameplay/Presentation/BuildingHealthBar.tscn" id="10_k07o4"]
 [ext_resource type="PackedScene" uid="uid://6bryfeq255wg" path="res://src/Demons/Presentation/WormDemon.tscn" id="11_58wa7"]
+[ext_resource type="PackedScene" uid="uid://cco3y0l2qiv6m" path="res://src/Gameplay/Presentation/WinPopUp.tscn" id="11_i0xve"]
+[ext_resource type="Texture2D" uid="uid://kljduouolebr" path="res://src/Demons/Assets/flame.png" id="16_s4d28"]
+[ext_resource type="Script" path="res://src/MollysHouse/Presentation/Flame.cs" id="17_xala1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nm5so"]
 vertices = PackedVector3Array(-105.518, 0.4, -49.5, -105.518, 0.4, 49.5, 109.982, 0.4, 49.5, 109.982, 0.4, -49.5)
@@ -23,13 +27,74 @@ albedo_texture = ExtResource("3_3tbf8")
 
 [sub_resource type="Environment" id="Environment_ndfht"]
 
-[node name="MollysHouse" type="Node3D" node_paths=PackedStringArray("_buildingHealthBar", "_gameOverPopUp")]
+[sub_resource type="Animation" id="Animation_wpjii"]
+resource_name = "flame"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.677537, 0), Vector3(-1.80443e-09, 0.677537, 0.172247), Vector3(6.24401e-09, 0.677537, -0.205693), Vector3(0, 0.677537, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1.54073, 1), Vector3(1, 1.341, 1), Vector3(1, 1.521, 1), Vector3(1, 1.54073, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qsg1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.677537, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1.54073, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7egj"]
+_data = {
+"RESET": SubResource("Animation_qsg1n"),
+"flame": SubResource("Animation_wpjii")
+}
+
+[node name="MollysHouse" type="Node3D" node_paths=PackedStringArray("_buildingHealthBar", "_gameOverPopUp", "_waveTimer", "_winPopUp")]
 script = ExtResource("1_y10a5")
 _buildingHealthBar = NodePath("CanvasLayer/BuildingHealthBar")
 _gameOverPopUp = NodePath("CanvasLayer/GameOverPopUp")
-
-[node name="GameplayManager" type="Node" parent="."]
-script = ExtResource("1_lea2h")
+_waveTimer = NodePath("CanvasLayer/WaveTimer")
+_winPopUp = NodePath("CanvasLayer/WinPopUp")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_nm5so")
@@ -45,23 +110,6 @@ size = Vector3(216.426, 0.2, 100)
 
 [node name="House" parent="." instance=ExtResource("4_p5gux")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84.5841, -3.8147e-06, 4.18477)
-
-[node name="John" parent="." instance=ExtResource("1_oempw")]
-transform = Transform3D(1, -4.96191e-16, 3.16108e-16, 3.16108e-16, 0.906308, 0.422618, -4.96191e-16, -0.422618, 0.906308, 27.2357, 2.80167, 2.08132e-12)
-motion_mode = 1
-
-[node name="AnimatedSprite3D" parent="John" index="0"]
-frame = 15
-frame_progress = 0.0
-
-[node name="RakeArea" parent="John/AnimatedSprite3D" index="1"]
-visible = true
-
-[node name="IdleState" parent="John/States" index="0" node_paths=PackedStringArray("_dashWidget")]
-_dashWidget = NodePath("../../../CanvasLayer/DashWidget")
-
-[node name="Camera3D" type="Camera3D" parent="John"]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 0, 18.0691, 25.677)
 
 [node name="BorderTrees" type="Node3D" parent="."]
 transform = Transform3D(1, -5.2318e-16, 3.02058e-16, 3.02058e-16, 0.866025, 0.5, -5.2318e-16, -0.5, 0.866025, 7.62939e-06, 22.0484, -0.270895)
@@ -304,6 +352,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.185, 3.19898, 26.0258)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ActionWidget" parent="CanvasLayer" instance=ExtResource("6_1x24t")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 206.0
+offset_top = -303.0
+offset_right = 356.0
+offset_bottom = -153.0
+grow_horizontal = 1
+grow_vertical = 0
+
 [node name="DashWidget" parent="CanvasLayer" instance=ExtResource("7_6h43l")]
 anchors_preset = 2
 anchor_top = 1.0
@@ -323,7 +382,13 @@ _initialHealth = 100
 _name = "Molly's House"
 _building = NodePath("../../House")
 
+[node name="WaveTimer" parent="CanvasLayer" instance=ExtResource("10_fhfdl")]
+
 [node name="GameOverPopUp" parent="CanvasLayer" instance=ExtResource("10_gb47a")]
+visible = false
+_buildingName = "Molly's House"
+
+[node name="WinPopUp" parent="CanvasLayer" instance=ExtResource("11_i0xve")]
 visible = false
 
 [node name="Border_1" type="CSGBox3D" parent="."]
@@ -363,4 +428,143 @@ transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 
 [node name="DemonPortal3" parent="DemonsSpawner/Portals" instance=ExtResource("10_c6ach")]
 transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 6.07777, 0, 12.9264)
 
-[editable path="John"]
+[node name="John" parent="." instance=ExtResource("10_cmspo")]
+transform = Transform3D(1, -5.2318e-16, 3.02058e-16, 3.02058e-16, 0.866025, 0.5, -5.2318e-16, -0.5, 0.866025, 0, 3.52175, 0)
+
+[node name="Flames" type="Node3D" parent="."]
+
+[node name="Flame" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -71.0522, 3.77106, 34.7253)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame2" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.9211, 3.7417, 23.7857)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame2"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame3" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.8635, 3.74171, 29.0659)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame3"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame4" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.8052, 3.7748, 17.0524)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame4"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame5" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.9317, 3.92059, 12.7918)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame5"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame6" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.7608, 3.90626, 7.55442)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame6"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame7" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -71.5601, 3.67637, 2.03383)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame7"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame8" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.6948, 4.19946, -3.32101)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame8"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame9" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -71.3299, 3.81887, -9.81044)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame9"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame10" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.7593, 3.71116, -16.1852)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame10"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame12" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.3913, 3.93107, -21.9943)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame12"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame13" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -70.7847, 4.03191, -29.1475)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+_playBackward = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame13"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
+
+[node name="Flame14" type="Sprite3D" parent="Flames"]
+transform = Transform3D(0.779119, 0, 0.626876, 0, 1.54073, 0, -0.626876, 0, 0.779119, -71.3096, 4.02869, -36.5521)
+texture = ExtResource("16_s4d28")
+script = ExtResource("17_xala1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flames/Flame14"]
+libraries = {
+"": SubResource("AnimationLibrary_y7egj")
+}
