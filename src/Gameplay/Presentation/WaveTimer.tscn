@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7mnwlmm4ael6"]
+
+[ext_resource type="FontFile" uid="uid://bq2b1cmpv3sgb" path="res://src/Shared/Assets/Fonts/Rubik-Medium.ttf" id="1_nxm15"]
+[ext_resource type="Script" path="res://src/Gameplay/Presentation/WaveTimer.cs" id="1_o6qdw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1woif"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_offset = Vector2(2.08165e-12, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjysl"]
+bg_color = Color(0, 0.576471, 0.572549, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[node name="WaveTimer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o6qdw")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2125
+anchor_top = 0.0277778
+anchor_right = 0.7875
+anchor_bottom = 0.0722222
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1woif")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mjysl")
+max_value = 300.0
+step = 1.0
+value = 300.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = 32.0
+offset_right = 284.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_nxm15")
+theme_override_font_sizes/font_size = 55
+text = "DEFEND THE HOUSE!!"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true

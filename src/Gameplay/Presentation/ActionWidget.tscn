@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1yo6faoxkc8c"]
+
+[ext_resource type="Texture2D" uid="uid://cecc8v462lfjr" path="res://src/Shared/Assets/ui_elements.svg" id="1_gaadw"]
+[ext_resource type="Script" path="res://src/Gameplay/Presentation/ActionWidget.cs" id="1_ogfca"]
+[ext_resource type="Texture2D" uid="uid://cxtmxqg31nijq" path="res://src/Shared/Assets/rake.png" id="2_7ltdi"]
+[ext_resource type="FontFile" uid="uid://bq2b1cmpv3sgb" path="res://src/Shared/Assets/Fonts/Rubik-Medium.ttf" id="2_8ojmb"]
+[ext_resource type="Texture2D" uid="uid://bipbn2w4jioh7" path="res://src/Shared/Assets/paradox.png" id="3_aqf7n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6vnu"]
+texture = ExtResource("1_gaadw")
+region_rect = Rect2(0, 412, 211, 222)
+
+[node name="ActionWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1770.0
+offset_bottom = -930.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ogfca")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m6vnu")
+
+[node name="RakeIcon" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.123
+anchor_top = 0.253
+anchor_right = 0.877
+anchor_bottom = 0.747
+offset_left = 0.0499995
+offset_top = 0.0499969
+offset_right = -0.0500051
+offset_bottom = -0.0500058
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7ltdi")
+
+[node name="ParadoxIcon" type="NinePatchRect" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.123
+anchor_top = 0.253
+anchor_right = 0.877
+anchor_bottom = 0.747
+offset_left = 0.549999
+offset_top = 0.0500013
+offset_right = -5.55
+offset_bottom = 17.95
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_aqf7n")
+
+[node name="Key" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture = ExtResource("1_gaadw")
+region_rect = Rect2(23, 879, 79, 78)
+
+[node name="ButtonKey" type="Label" parent="Panel/Key"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_8ojmb")
+theme_override_font_sizes/font_size = 28
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
