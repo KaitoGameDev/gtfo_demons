@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cco3y0l2qiv6m"]
+[gd_scene load_steps=7 format=3 uid="uid://cco3y0l2qiv6m"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Presentation/WinPopUp.cs" id="1_87bue"]
+[ext_resource type="FontFile" uid="uid://b2x50smjjq7p1" path="res://src/Shared/Assets/Fonts/LilitaOne-Regular.ttf" id="2_d5v68"]
+[ext_resource type="FontFile" uid="uid://bq2b1cmpv3sgb" path="res://src/Shared/Assets/Fonts/Rubik-Medium.ttf" id="3_f8bxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h35th"]
+bg_color = Color(0, 0.690196, 0.662745, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vct1x"]
+bg_color = Color(1, 0.392157, 0.117647, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smfts"]
+bg_color = Color(0.827451, 0.54902, 0, 1)
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
 
 [node name="WinPopUp" type="Control"]
 layout_mode = 3
@@ -10,3 +33,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_87bue")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -333.0
+offset_right = 469.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h35th")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_right = 226.0
+offset_bottom = 350.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_d5v68")
+theme_override_font_sizes/font_size = 60
+text = "YOU WON!
+
+YOU DEFEND THE HOUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.332623
+anchor_top = 0.552553
+anchor_right = 0.667377
+anchor_bottom = 0.705706
+offset_top = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_f8bxx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_vct1x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vct1x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vct1x")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vct1x")
+theme_override_styles/focus = SubResource("StyleBoxFlat_smfts")
+text = "Back to Main Menu"
+metadata/_edit_use_anchors_ = true

@@ -294,7 +294,7 @@ transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.3
 [node name="Storage" type="Node3D" parent="." node_paths=PackedStringArray("_progressBar", "_storageBarAnimator")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19129, -0.155647, 0)
 script = ExtResource("24_4h82v")
-_capacity = 20
+_capacity = 12
 _overloadedCapacity = 5
 _progressBar = NodePath("../SubViewportContainer/SubViewport/Control/ProgressBar")
 _barStyle = SubResource("StyleBoxFlat_lpw00")

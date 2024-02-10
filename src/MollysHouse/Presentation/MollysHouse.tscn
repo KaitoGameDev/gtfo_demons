@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsce3uyl7rge6"]
+[gd_scene load_steps=25 format=3 uid="uid://bsce3uyl7rge6"]
 
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/MollysHouse.cs" id="1_y10a5"]
 [ext_resource type="Texture2D" uid="uid://crsxqtf4pcifw" path="res://src/MollysHouse/Assets/Tree.png" id="4_aoeby"]
@@ -14,8 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://6bryfeq255wg" path="res://src/Demons/Presentation/WormDemon.tscn" id="11_58wa7"]
 [ext_resource type="PackedScene" uid="uid://cco3y0l2qiv6m" path="res://src/Gameplay/Presentation/WinPopUp.tscn" id="11_i0xve"]
 [ext_resource type="PackedScene" uid="uid://cdqjxuq3hwxiw" path="res://src/Demons/Presentation/RunningDemon.tscn" id="14_88ljp"]
+[ext_resource type="Texture2D" uid="uid://c5pqbc3a0kqev" path="res://src/MollysHouse/Assets/Background.png" id="15_a4j4f"]
 [ext_resource type="Texture2D" uid="uid://kljduouolebr" path="res://src/Demons/Assets/flame.png" id="16_s4d28"]
 [ext_resource type="Script" path="res://src/MollysHouse/Presentation/Flame.cs" id="17_xala1"]
+[ext_resource type="AudioStream" uid="uid://bvjt12m1185vw" path="res://src/Shared/Assets/Music/background-molly2.wav" id="18_3cai7"]
+[ext_resource type="AudioStream" uid="uid://dvfc6l3o68bso" path="res://src/Shared/Assets/Sounds/bonfire.wav" id="19_w54o2"]
 
 [sub_resource type="Environment" id="Environment_ndfht"]
 
@@ -80,6 +83,9 @@ _data = {
 "RESET": SubResource("Animation_qsg1n"),
 "flame": SubResource("Animation_wpjii")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qskoy"]
+albedo_texture = ExtResource("15_a4j4f")
 
 [node name="MollysHouse" type="Node3D" node_paths=PackedStringArray("_buildingHealthBar", "_gameOverPopUp", "_waveTimer", "_winPopUp")]
 script = ExtResource("1_y10a5")
@@ -321,6 +327,7 @@ size = Vector3(218.783, 5.04895, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0474551, 0.998873, 0, -0.998873, 0.0474551, 0, 25.02, 0)
+light_color = Color(0.6, 0.6, 0.6, 1)
 light_energy = 3.0
 sky_mode = 1
 
@@ -409,7 +416,7 @@ one_shot = true
 [node name="DemonPortal3" parent="Portals" node_paths=PackedStringArray("_summonTime", "_target") instance=ExtResource("10_c6ach")]
 transform = Transform3D(0.158072, 0, 0.987428, 0, 1, 0, -0.987428, 0, 0.158072, 6.83171, 7.62939e-06, 18.3156)
 _summonTime = NodePath("Timer")
-_availableDemons = Array[PackedScene]([ExtResource("11_58wa7"), ExtResource("14_88ljp")])
+_availableDemons = Array[PackedScene]([ExtResource("14_88ljp"), ExtResource("11_58wa7")])
 _target = NodePath("../../House")
 
 [node name="Timer" type="Timer" parent="Portals/DemonPortal3"]
@@ -555,3 +562,32 @@ script = ExtResource("17_xala1")
 libraries = {
 "": SubResource("AnimationLibrary_y7egj")
 }
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_qskoy")
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(225.65, 1, 107.11)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_3cai7")
+autoplay = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.431, 0, 0)
+stream = ExtResource("19_w54o2")
+autoplay = true
+max_distance = 15.0
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.431, 0, -28.6243)
+stream = ExtResource("19_w54o2")
+autoplay = true
+max_distance = 15.0
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.431, 0, 24.9214)
+stream = ExtResource("19_w54o2")
+autoplay = true
+max_distance = 15.0

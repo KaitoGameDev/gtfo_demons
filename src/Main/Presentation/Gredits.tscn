@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfgefs0mvxcv5"]
+
+[ext_resource type="FontFile" uid="uid://bq2b1cmpv3sgb" path="res://src/Shared/Assets/Fonts/Rubik-Medium.ttf" id="1_shcwi"]
+[ext_resource type="Script" path="res://src/Main/Presentation/Credits.cs" id="1_uco6t"]
+[ext_resource type="FontFile" uid="uid://b2x50smjjq7p1" path="res://src/Shared/Assets/Fonts/LilitaOne-Regular.ttf" id="2_8y4yv"]
+
+[node name="Credits" type="Node"]
+script = ExtResource("1_uco6t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.815686, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.225521
+anchor_top = 0.0546296
+anchor_right = 0.774479
+anchor_bottom = 0.777778
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_shcwi")
+theme_override_font_sizes/font_size = 30
+text = "GTFO! DEMONS
+
+This project was initially made to be part of Godot Wild Jam #65.
+
+But I have some problems and couldn't make it in time, so I'm very thankful
+ that there is a FFS game jam, this gives me another opportunity
+ to present this game, please enjoy it.
+
+Credits
+
+Game Designer/Developer
+@KaitoGameDev
+
+Testers (thank you very much)
+Lucy, Javier"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.388542
+anchor_top = 0.738889
+anchor_right = 0.611979
+anchor_bottom = 0.880556
+offset_top = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_8y4yv")
+theme_override_font_sizes/font_size = 65
+text = "Back"
+metadata/_edit_use_anchors_ = true

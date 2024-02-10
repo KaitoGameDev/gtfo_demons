@@ -1,4 +1,5 @@
 using Godot;
+using gtfo_demons.Gameplay;
 
 namespace gtfo_demons.Demons.Presentation;
 
@@ -7,11 +8,22 @@ public partial class Demon: CharacterBody3D
     [Export] private float _speed = 5.0f;
     [Export] private Node3D _target;
     [Export] private float _damageAmount;
-    
-    
+
+    private IGameplayManager _gameplayManager;
+
+    public override void _Ready() {
+        _gameplayManager = GameplayFactory.GetPlayerManager();
+    }
+
     public void SetTarget(Node3D target)
     {
         _target = target;
+    }
+
+    public override void _Process(double delta) {
+        if (!_gameplayManager.IsGameplayActive()) {
+            CallDeferred(Node.MethodName.QueueFree);
+        }
     }
 
     public override void _PhysicsProcess(double delta) {

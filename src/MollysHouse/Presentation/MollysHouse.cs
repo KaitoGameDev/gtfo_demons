@@ -13,7 +13,6 @@ public partial class MollysHouse : Node3D
 {
     [Export] private BuildingHealthBar _buildingHealthBar;
     [Export] private GameOverPopUp _gameOverPopUp;
-    [Export] private Control _pausePopUp;
     [Export] private WaveTimer _waveTimer;
     [Export] private WinPopUp _winPopUp;
 

@@ -1,15 +1,17 @@
 using Godot;
-using System;
 
-public partial class WinPopUp : Control
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+namespace gtfo_demons.Gameplay.Presentation; 
+
+public partial class WinPopUp : Control {
+	private Button _button;
+
+	public override void _Ready() {
+		_button = GetNode<Button>("Panel/Button");
+
+		_button.Connect(BaseButton.SignalName.Pressed, Callable.From(OnButtonPressed));
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	private void OnButtonPressed() {
+		GetTree().ChangeSceneToFile("res://src/Main/Presentation/MainMenu.tscn");
 	}
 }

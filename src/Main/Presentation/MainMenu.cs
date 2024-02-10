@@ -23,9 +23,8 @@ public partial class MainMenu : Node
 	{
 		GetTree().Quit();
 	}
-	private void OnCreditsPressed()
-	{
-		GD.Print("CREDITS PRESSED");
+	private void OnCreditsPressed() {
+		GetTree().ChangeSceneToFile("res://src/Main/Presentation/Gredits.tscn");
 	}
 
 	private void OnStartGamePressed()
